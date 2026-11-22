@@ -50,8 +50,14 @@ const Input = (() => {
     if (stick) {
       const knob = stick.querySelector('.knob'), shaft = stick.querySelector('.shaft');
       let active = null;
+      // the shaft pivots 8px below the centre and always reaches the knob centre (23px above it at rest)
+      const shape = (dx, dy) => {
+        const vx = dx, vy = dy - 31, len = Math.hypot(vx, vy);
+        knob.style.transform = `translate(${dx}px, ${dy}px)`;
+        shaft.style.transform = `rotate(${Math.atan2(vx, -vy)}rad) scaleY(${len / 26})`;
+      };
       const release = () => {
-        active = null; knob.style.transform = shaft.style.transform = '';
+        active = null; shape(0, 0);
         ['up', 'down', 'left', 'right'].forEach(d => setDir('pad', d, false));
       };
       const move = e => {
@@ -59,11 +65,11 @@ const Input = (() => {
         let dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
         const len = Math.hypot(dx, dy), max = r.width * 0.28;
         if (len > max) { dx *= max / len; dy *= max / len; }
-        knob.style.transform = `translate(${dx}px, ${dy}px)`;
-        shaft.style.transform = `rotate(${Math.atan2(dx, -dy)}rad) scaleY(${0.6 + Math.min(len, max) / max * 0.6})`;
+        shape(dx, dy);
         const d = len < 10 ? null : Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
         ['up', 'down', 'left', 'right'].forEach(k => setDir('pad', k, k === d));
       };
+      shape(0, 0);
       stick.addEventListener('pointerdown', e => { e.preventDefault(); active = e.pointerId; stick.setPointerCapture?.(e.pointerId); move(e); });
       stick.addEventListener('pointermove', e => { if (e.pointerId === active) move(e); });
       ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(t => stick.addEventListener(t, release));
