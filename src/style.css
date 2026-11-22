@@ -156,3 +156,5 @@ body.portrait #share { margin: 0 0 6px 2px; padding: 2px 4px; }
 .crt .note { color: #f4f1ff; margin-bottom: 1.35em; }
 .video .card { cursor: pointer; }
 .tv h2 .chbtn { font-size: .8em; padding: .1em .5em; margin: 0 .3em; vertical-align: middle; }
+.video .card .tt, .video .card .cn { text-align: center; }
+.video .card .cn { color: #CEBEF5; font-size: .9em; }

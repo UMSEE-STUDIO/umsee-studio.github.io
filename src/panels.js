@@ -11,10 +11,10 @@ const Panels = (() => {
     return m ? m[1] : null;
   }
   // Click-to-load video: no third-party request until the user presses play.
-  function videoBlock(url, title) {
+  function videoBlock(url, title, channel) {
     const id = ytId(url);
     return `<div class="video" data-yt="${e(id || '')}">
-      <div class="card"><div class="ch">▶</div><div class="tt">${e(title)}</div></div>
+      <div class="card"><div class="ch">▶</div><div class="tt">${e(title)}</div>${channel ? `<div class="cn">${e(channel)}</div>` : ''}</div>
       <button data-play>${t('play')}</button> ${ext(url, Data.t('openYoutube'))}</div>`;
   }
   function wireVideo(panel) {
@@ -43,7 +43,7 @@ const Panels = (() => {
     const list = Data.career.interviews, n = list.length;
     const render = () => {
       const v = list[ch];
-      return `<div class="static"></div><h2><button class="chbtn" data-ch="-1" aria-label="prev channel">◀</button> ${t('channel')} ${ch + 1}/${n} <button class="chbtn" data-ch="1" aria-label="next channel">▶</button></h2>${videoBlock(v.url, v.title)}`;
+      return `<div class="static"></div><h2><button class="chbtn" data-ch="-1" aria-label="prev channel">◀</button> ${t('channel')} ${ch + 1}/${n} <button class="chbtn" data-ch="1" aria-label="next channel">▶</button></h2>${videoBlock(v.url, v.title, v.channel)}`;
     };
     Audio8.sfx('static');
     // change channel (also stops a playing video: the TV shows the next channel's card)

@@ -399,13 +399,15 @@
  "interviews": [
   {
    "id": "INT-01",
-   "title": "Fantastic power x Fun | 삼성SDI 작가 인터뷰",
-   "url": "https://youtu.be/_gO0UF6UOJA?si=KgW-e5aZ90qnT9Bh"
+   "title": "Fantastic power x Fun l 엄재원 작가 인터뷰",
+   "url": "https://youtu.be/_gO0UF6UOJA?si=KgW-e5aZ90qnT9Bh",
+   "channel": "삼성SDI"
   },
   {
    "id": "INT-02",
-   "title": "깊은 슬픔에서 찾아낸 행복의 조각들로 만듭니다. 엄재원 작가 | 아티스트 스토리 ARTIST STORY",
-   "url": "https://www.youtube.com/watch?v=glnPEEsFBvU"
+   "title": "깊은 슬픔에서 찾아낸 행복의 조각들로 만듭니다.",
+   "url": "https://www.youtube.com/watch?v=glnPEEsFBvU",
+   "channel": "아티스트 스토리"
   }
  ]
 }
