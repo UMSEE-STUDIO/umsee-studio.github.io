@@ -6,7 +6,7 @@
 <title>UMSEE Pixel Arcade</title>
 <link rel="icon" href="data:,">
 <link rel="preload" href="assets/fonts/Galmuri11.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="src/style.css">
+<meta http-equiv="Cache-Control" content="no-cache">
 </head>
 <body>
 <div id="device">
@@ -35,15 +35,19 @@
     </div>
   </div>
 </div>
-<script src="src/data.js"></script>
-<script src="src/audio.js"></script>
-<script src="src/input.js"></script>
-<script src="src/ui.js"></script>
-<script src="src/panels.js"></script>
-<script src="src/scenes.js"></script>
-<script src="src/world.js"></script>
-<script src="src/gallery.js"></script>
-<script src="src/career.js"></script>
-<script src="src/main.js"></script>
+<script>
+// Always run the newest build: read version.json past every cache, then load the style, scripts and
+// data with ?v=<version>. Locally (no version.json) every reload gets a fresh timestamp.
+(async () => {
+  let v = String(Date.now());
+  try { const r = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' }); if (r.ok) v = (await r.json()).v; } catch { /* offline or local */ }
+  window.ASSET_V = v;
+  const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'src/style.css?v=' + v; document.head.appendChild(css);
+  await new Promise(ok => { css.onload = css.onerror = ok; });
+  for (const f of ['data', 'audio', 'input', 'ui', 'panels', 'scenes', 'world', 'gallery', 'career', 'main']) {
+    await new Promise((ok, fail) => { const s = document.createElement('script'); s.src = `src/${f}.js?v=${v}`; s.onload = ok; s.onerror = fail; document.body.appendChild(s); });
+  }
+})();
+</script>
 </body>
 </html>

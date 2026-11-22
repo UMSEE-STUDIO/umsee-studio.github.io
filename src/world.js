@@ -294,6 +294,7 @@ function makeRoom(def) {
       const arrived = stepActor(p, this.grid, dt, dir);
       this.far = Math.max(this.far, this.start[1] - p.ty);
       if (def.hesitate && p.face === 'down' && faceBefore !== 'down' && this.far >= 2 && this.time - this.lastHes > 6) { this.lastHes = this.time; this.say(def.hesitate); }
+      if (!p.moving && !p.path.length && !dir) faceMouse(p, p.x + 8, p.y + 6);
       if (arrived && !p.path.length && p.goal) { const g = p.goal; p.goal = null; if (this.adjacent(g)) { this.interact(g); return; } }
       if (!p.moving) {
         const near = def.objects.find(o => o.act && this.adjacent(o)) || null;

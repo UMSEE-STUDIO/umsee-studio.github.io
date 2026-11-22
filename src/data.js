@@ -10,7 +10,7 @@ const Data = {
   lang: 'en', strings: {}, dialogue: {}, career: null, art: [], about: null,
 
   async load() {
-    const get = (u, type) => fetch(u).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r[type](); });
+    const get = (u, type) => fetch(`${u}?v=${window.ASSET_V || Date.now()}`).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r[type](); });
     const [dlg, career, art, about, ...strs] = await Promise.all([
       get('data/dialogue.txt', 'text'), get('data/career.json', 'json'), get('art/manifest.json', 'json'), get('data/about.json', 'json'),
       ...LANGS.map(l => get(`i18n/${l}.json`, 'json')),

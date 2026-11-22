@@ -90,7 +90,7 @@
 
   const img = new Image();
   img.onload = () => { Pigeon.img = img; };
-  img.src = 'assets/pigeon_sheet.png';
+  img.src = 'assets/pigeon_sheet.png?v=' + (window.ASSET_V || Date.now());
 
   try { await Data.load(); }
   catch (err) { ctx.fillStyle = '#fff'; ctx.font = '8px monospace'; ctx.fillText('Load failed: ' + err.message, 8, 90); throw err; }

@@ -63,6 +63,16 @@ const Pigeon = {
 };
 
 const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+// Turn toward the mouse pointer, only when the pointer has moved since last time (keys/stick win otherwise).
+let lastHoverKey = '';
+function faceMouse(actor, cx, cy, mode) {
+  const h = Input.hover; if (!h) return;
+  const k = h.x + ',' + h.y; if (k === lastHoverKey) return; lastHoverKey = k;
+  const dx = h.x - cx, dy = h.y - cy;
+  if (mode === 'corridor') actor.face = h.x < 110 ? 'left' : h.x > 210 ? 'right' : 'up';
+  else if (mode === 'lobby') actor.face = h.y < 130 ? 'up' : dx < 0 ? 'left' : 'right';
+  else if (Math.abs(dx) > 6 || Math.abs(dy) > 6) actor.face = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
+}
 
 function findPath(grid, sx, sy, goals) {
   const w = grid[0].length, h = grid.length, isGoal = new Set(goals.map(([x, y]) => y * w + x));

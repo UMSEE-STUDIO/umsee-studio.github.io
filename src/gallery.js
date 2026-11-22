@@ -76,6 +76,7 @@ const GalleryScene = (() => {
     update(dt) {
       tickWheelHint(dt, 'HINT_WHEEL', () => ({ x: walker.x + 8, y: walker.y - 14 }));
       Hint.a = false; Hint.stick = target === 0;
+      if (!Input.dir()) faceMouse(walker, walker.x + 8, walker.y);
       pos += Math.sign(target - pos) * Math.min(Math.abs(target - pos), dt * 4);
       // auto-repeat while ▲/▼ is held (joystick on phones): one step per tick, never left/right
       const held = Input.dir();
@@ -142,9 +143,10 @@ const LobbyScene = (() => {
     leave() { clear(); },
     update(dt) {
       const gx = DOORS[sel].x + DOORS[sel].w / 2 - 8, dx = gx - pg.x;
-      pg.moving = Math.abs(dx) > 0.5; if (pg.moving) { pg.face = dx > 0 ? 'right' : 'left'; pg.x += Math.sign(dx) * Math.min(Math.abs(dx), dt * 110); pg.t += dt; } else pg.face = 'up';
+      pg.moving = Math.abs(dx) > 0.5; if (pg.moving) { pg.face = dx > 0 ? 'right' : 'left'; pg.x += Math.sign(dx) * Math.min(Math.abs(dx), dt * 110); pg.t += dt; if (Math.abs(gx - pg.x) <= 0.5) pg.face = 'up'; }
       tickWheelHint(dt, 'HINT_WHEEL_LOBBY', () => ({ x: pg.x + 8, y: pg.y - 14 }));
       Hint.a = true; Hint.stick = false;
+      if (!pg.moving) faceMouse(pg, pg.x + 8, pg.y);
       const tap = Input.takeTap(), hv = Input.hover;
       const h = hv ? doorAt(hv.x, hv.y) : -1;
       document.getElementById('screen').style.cursor = h >= 0 ? 'pointer' : '';
