@@ -373,3 +373,41 @@ zh: 滚动滚轮，就能慢慢往前走吧。
 tw: 滾動滾輪，就能慢慢往前走吧。
 fr: En roulant la molette, je pourrais flâner.
 es: Girando la rueda podría pasear despacio.
+
+# ---------- M5 인터뷰 방 (TV, 리모컨) ----------
+
+@REMOTE_NEAR
+[상황] M5 인터뷰 방에서 리모컨에 다가갔을 때(무작위 한 묶음)
+ko: 리모컨이다. 채널을 돌려 볼까?
+en: A remote. Shall I flip the channel?
+ja: リモコンだ。チャンネルを変えてみようか？
+zh: 是遥控器。换个频道看看？
+tw: 是遙控器。換個頻道看看？
+fr: Une télécommande. Je change de chaîne ?
+es: Un control remoto. ¿Cambio de canal?
+---
+ko: 뭐가 나오고 있을까.
+en: I wonder what's on.
+ja: 何をやってるのかな。
+zh: 在播什么呢？
+tw: 在播什麼呢？
+fr: Qu’est-ce qui passe, je me demande.
+es: ¿Qué estarán pasando?
+
+@TV_NEAR
+[상황] M5 인터뷰 방에서 TV에 다가갔을 때(무작위 한 묶음)
+ko: TV에서 누군가 이야기하고 있다.
+en: Someone is talking on the TV.
+ja: テレビで誰かが話している。
+zh: 电视里有人在说话。
+tw: 電視裡有人在說話。
+fr: Quelqu’un parle à la télé.
+es: Alguien está hablando en la tele.
+---
+ko: 한번 켜 볼까.
+en: Maybe I’ll turn it on.
+ja: ちょっとつけてみようか。
+zh: 打开看看吧。
+tw: 打開看看吧。
+fr: Et si je l’allumais.
+es: ¿Y si la enciendo?

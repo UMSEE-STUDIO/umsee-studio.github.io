@@ -1,6 +1,6 @@
 // M3 career room: CRT credits crawl, with a plain text view. Text is shown exactly as in data/career.json.
 const CareerScene = (() => {
-  let t = 0, opened = false, resumeAt = 0, rollEl = null, openedAt = 0, startAt = 0; // seconds into the crawl
+  let t = 0, opened = false;
   const e = s => UI.esc(s);
 
   function section(key, items, fmt) {
@@ -28,15 +28,13 @@ const CareerScene = (() => {
       section('artistNote', c.artistNote, para);
   }
 
-  // remember the crawl position (seconds) when the room is left
-  function remember() { if (openedAt) { resumeAt = startAt + (performance.now() - openedAt) / 1000; openedAt = 0; } }
 
   function open() {
     opened = true;
     const p = UI.open(`<div class="crawl"><div class="roll">${content()}</div></div><div class="list">${content()}</div>
       <p class="hint"><button data-mode>${e(Data.t('textView'))} [A]</button></p>`, {
       cls: 'crt',
-      onClose: () => { remember(); Scenes.go(HubScene, 'career'); },
+      onClose: () => Scenes.go(HubScene, 'career'),
       onKey: () => { if (!document.activeElement?.matches('a') && Input.consume('a')) { toggle(p); return true; } return false; },
     });
     const roll = p.querySelector('.roll');
@@ -45,9 +43,7 @@ const CareerScene = (() => {
     roll.style.setProperty('--dist', -(roll.scrollHeight + p.querySelector('.crawl').clientHeight * 1.6) + 'px');
     const dur = Math.max(20, roll.scrollHeight / 36); // ~2x the first preview speed
     roll.style.animationDuration = dur + 's';
-    startAt = resumeAt % dur; openedAt = performance.now();
-    roll.style.animationDelay = -startAt + 's'; // later visits continue where the crawl was left
-    rollEl = roll;
+    // every visit starts from the top (user decision), like the music
     p.addEventListener('click', ev => { if (ev.target.closest('[data-mode]')) toggle(p); });
   }
   function toggle(p) {
@@ -58,16 +54,14 @@ const CareerScene = (() => {
 
   return {
     camera: true, camTarget: () => ({ x: W / 2, y: H / 2 }),
-    leave() { remember(); },
     enter() {
       t = 0; opened = false;
-      Audio8.setTrack('space');
-      if (!Save.get('enter.career', false)) { Save.set('enter.career', true); UI.say(Data.say('ENTER_CAREER'), { x: 160, y: 110 }); }
-      else t = 2;
+      Audio8.setTrack('space'); Audio8.restart(); // music from the start on every visit
+      UI.say(Data.say('ENTER_CAREER'), { x: 160, y: 110 }); // the "old TV" line every visit, then the crawl
     },
     update(dt) {
       t += dt;
-      if (Input.consume('b')) { remember(); Scenes.go(HubScene, 'career'); return; }
+      if (Input.consume('b')) { Scenes.go(HubScene, 'career'); return; }
       if (!opened && (t > 2.2 || Input.consume('a') || Input.takeTap())) open();
     },
     draw(ctx) {

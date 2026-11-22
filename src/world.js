@@ -434,13 +434,13 @@ const InterviewScene = makeRoom({
   start: [3, 9],
   channel: 0,
   objects: [
-    { id: 'tv', x: 7, y: 3, w: 6, h: 2, label: () => Data.t('interviews'), act: () => Panels.tv(InterviewScene.def.channel),
+    { id: 'tv', x: 7, y: 3, w: 6, h: 2, near: 'TV_NEAR', label: () => Data.t('interviews'), act: () => Panels.tv(InterviewScene.def.channel),
       draw: (c, X, Y, w, h) => {
         Draw.crt(c, X, Y, w, h, false);
         c.font = '8px Galmuri11, monospace'; c.textAlign = 'left'; c.textBaseline = 'top'; c.fillStyle = COL.yellow;
         c.fillText(`CH ${InterviewScene.def.channel + 1}`, X + 12, Y - 8);
       } },
-    { id: 'remote', x: 9, y: 6, w: 2, h: 1, label: () => Data.t('channel'), act: () => { Audio8.sfx('click'); InterviewScene.say('TV_CHANNEL'); setTimeout(() => Panels.tv(InterviewScene.def.channel), 350); },
+    { id: 'remote', x: 9, y: 6, w: 2, h: 1, near: 'REMOTE_NEAR', label: () => Data.t('channel'), act: () => { Audio8.sfx('click'); InterviewScene.say('TV_CHANNEL'); setTimeout(() => Panels.tv(InterviewScene.def.channel), 350); },
       draw: (c, X, Y, w) => { shadow(c, X, Y + 15, w); rect(c, COL.woodDark, X + 2, Y + 2, w - 4, 12); rect(c, COL.wood, X + 2, Y, w - 4, 6); Draw.remote(c, X + 12, Y - 8); } },
     { id: 'sofa', x: 6, y: 8, w: 8, h: 1, draw: (c, X, Y, w) => Draw.sofa(c, X, Y, w) },
     deco('lamp', 15, 3, 1, 1, (c, X, Y) => Draw.lamp(c, X, Y)),
