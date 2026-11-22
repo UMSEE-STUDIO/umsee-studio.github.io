@@ -6,9 +6,9 @@ body { display: flex; flex-direction: column; align-items: center; justify-conte
 #ui { position: absolute; inset: 0; pointer-events: none; overflow: hidden; --s: 2; font-size: calc(5px * var(--s) + 4px); line-height: 1.35; }
 
 /* speech bubble */
-.bubble { z-index: 4; position: absolute; transform: translate(-50%, -100%); max-width: 60%; background: #f4f1ff; color: #0b0f2a; padding: .35em .6em; border: 2px solid #0b0f2a; box-shadow: 0 0 0 2px #FB128E; display: none; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bubble { z-index: 4; position: absolute; transform: translate(-50%, -100%); width: max-content; max-width: 60%; background: #f4f1ff; color: #0b0f2a; padding: .35em .6em; border: 2px solid #0b0f2a; box-shadow: 0 0 0 2px #FB128E; display: none; white-space: pre-wrap; overflow-wrap: anywhere; }
 .bubble.on { display: block; }
-.bubble::after { content: ""; position: absolute; left: 50%; bottom: -8px; border: 4px solid transparent; border-top-color: #0b0f2a; transform: translateX(-50%); }
+.bubble::after { content: ""; position: absolute; left: calc(50% + var(--tail, 0px)); bottom: -8px; border: 4px solid transparent; border-top-color: #0b0f2a; transform: translateX(-50%); }
 
 /* bottom label */
 .label { z-index: 4; position: absolute; left: 50%; top: 2%; transform: translateX(-50%); max-width: 92%; text-align: center; white-space: pre-line; color: #FDE003; background: #0b0f2acc; border: 1px solid #FB128E; padding: .15em .7em; display: none; overflow-wrap: anywhere; }

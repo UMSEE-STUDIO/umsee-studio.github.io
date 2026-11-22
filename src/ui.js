@@ -106,7 +106,11 @@ const UI = (() => {
       timer -= dt; if (timer <= 0) showNext();
       if (anchor) {
         const a = typeof anchor === 'function' ? anchor() : anchor;
-        bubble.style.left = (a.x - View.x) * scale + 'px'; bubble.style.top = (a.y - View.y) * scale + 'px';
+        // keep the whole bubble on screen; the tail still points at the speaker
+        const x = (a.x - View.x) * scale, bw = bubble.offsetWidth, rw = root.clientWidth, m = 4;
+        const cx = Math.min(Math.max(x, bw / 2 + m), rw - bw / 2 - m);
+        bubble.style.left = cx + 'px'; bubble.style.top = (a.y - View.y) * scale + 'px';
+        bubble.style.setProperty('--tail', (x - cx) + 'px');
       }
     }
   }
