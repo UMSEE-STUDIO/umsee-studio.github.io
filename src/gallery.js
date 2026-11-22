@@ -158,8 +158,9 @@ const LobbyScene = (() => {
       // independent checks: a move and a confirm in the same frame must both count
       if (Input.consume('wheel:up') && (wheelHint.used.HINT_WHEEL_LOBBY = true) || Input.consume('dir:left')) { sel = (sel + 2) % 3; label(); Audio8.sfx('click'); }
       if (Input.consume('wheel:down') && (wheelHint.used.HINT_WHEEL_LOBBY = true) || Input.consume('dir:right')) { sel = (sel + 1) % 3; label(); Audio8.sfx('click'); }
-      if (Input.consume('a') || Input.consume('dir:up')) enter(sel);
-      else if (Input.consume('b') || Input.consume('dir:down')) Scenes.go(HubScene, 'gallery');
+      // enter with A / Enter / click only: a slight upward stick push must not open a door
+      if (Input.consume('a')) enter(sel);
+      else if (Input.consume('b')) Scenes.go(HubScene, 'gallery'); // B / Esc only (no stick-down exit)
     },
     draw(ctx, scale) {
       // hall: back wall, floor, three doors with a framed artwork above each

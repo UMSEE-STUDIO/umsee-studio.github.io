@@ -55,7 +55,7 @@
     return { x: Math.floor((cx - r.left) / scale) + View.x, y: Math.floor((cy - r.top) / scale) + View.y };
   });
   Input.onAny(() => Audio8.unlock());
-  Input.strictStickWhen(() => Scenes.current === GalleryScene || Scenes.current === LobbyScene);
+  Input.strictStickWhen(() => Scenes.current === GalleryScene); // corridor only: the lobby is chosen left/right
   Input.wheelWhen(() => !UI.modal && !UI.viewer && (Scenes.current === GalleryScene || Scenes.current === LobbyScene));
 
   const bgm = document.getElementById('bgm'), vol = document.getElementById('vol');
@@ -106,6 +106,13 @@
 
   try { await Data.load(); }
   catch (err) { ctx.fillStyle = '#fff'; ctx.font = '8px monospace'; ctx.fillText('Load failed: ' + err.message, 8, 90); throw err; }
+
+  // Phone/browser Back = B (Esc). One history entry is kept as a guard; on the title screen Back leaves the site.
+  history.pushState({ umw: 1 }, '');
+  addEventListener('popstate', () => {
+    if (Scenes.current === TitleScene && !UI.modal && !UI.viewer) { history.back(); return; }
+    Input.repeat('b'); history.pushState({ umw: 1 }, '');
+  });
 
   Data.onLang(Data.lang);
   Scenes.start(TitleScene);
