@@ -15,7 +15,7 @@ const Input = (() => {
 
   const DIRS4 = ['up', 'down', 'left', 'right'];
   let hover = null; // pointer position over the canvas (internal pixels), for captions
-  let anyInput = () => {}, wheelOn = () => false;
+  let anyInput = () => {}, wheelOn = () => false, stickStrict = () => false;
   function setDir(src, dir, on) {
     (sources[src] ||= {})[dir] = on;
     const was = held[dir];
@@ -49,7 +49,7 @@ const Input = (() => {
     const stick = document.getElementById('stick');
     if (stick) {
       const knob = stick.querySelector('.knob'), shaft = stick.querySelector('.shaft');
-      let active = null;
+      let active = null, stickDir = null;
       // the shaft pivots 8px below the centre and always reaches the knob centre (23px above it at rest)
       const shape = (dx, dy) => {
         const vx = dx, vy = dy - 31, len = Math.hypot(vx, vy);
@@ -57,7 +57,7 @@ const Input = (() => {
         shaft.style.transform = `rotate(${Math.atan2(vx, -vy)}rad) scaleY(${len / 26})`;
       };
       const release = () => {
-        active = null; shape(0, 0);
+        active = null; stickDir = null; shape(0, 0);
         ['up', 'down', 'left', 'right'].forEach(d => setDir('pad', d, false));
       };
       const move = e => {
@@ -66,7 +66,15 @@ const Input = (() => {
         const len = Math.hypot(dx, dy), max = r.width * 0.28;
         if (len > max) { dx *= max / len; dy *= max / len; }
         shape(dx, dy);
-        const d = len < 10 ? null : Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
+        // Direction with hysteresis: keep the current direction until the stick clearly points elsewhere.
+        // strict (gallery): the other axis must dominate 2.4x and be pushed 80% of the way.
+        const ax = Math.abs(dx), ay = Math.abs(dy), cand = ax > ay ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
+        const strict = stickStrict(), ratio = strict ? 2.4 : 1.5, reach = (strict ? 0.8 : 0.5) * max;
+        let d = stickDir;
+        if (len < 10) d = null;
+        else if (!d) d = len >= 14 ? cand : null;
+        else if (cand !== d && Math.max(ax, ay) >= ratio * Math.min(ax, ay) && len >= reach) d = cand;
+        stickDir = d;
         ['up', 'down', 'left', 'right'].forEach(k => setDir('pad', k, k === d));
       };
       shape(0, 0);
@@ -93,5 +101,6 @@ const Input = (() => {
 
   function onAny(fn) { anyInput = fn; }
   function wheelWhen(fn) { wheelOn = fn; }
-  return { attach, dir, consume, takeTap, endFrame, onAny, wheelWhen, repeat, get hover() { return hover; } };
+  function strictStickWhen(fn) { stickStrict = fn; }
+  return { attach, dir, consume, takeTap, endFrame, onAny, wheelWhen, strictStickWhen, repeat, get hover() { return hover; } };
 })();

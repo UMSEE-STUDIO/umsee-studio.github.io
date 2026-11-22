@@ -125,9 +125,14 @@ const Audio8 = (() => {
   }
   // Video playing: mute BGM. TV off or video ended: BGM back from the beginning.
   function setHold(v) { if (hold && !v) restart(); hold = v; apply(); }
+  // screen off / tab hidden / app switched: silence; back: resume (if music is on)
+  function setHidden(hide) { if (!ctx) return; hide ? ctx.suspend() : ctx.resume(); }
+  document.addEventListener('visibilitychange', () => setHidden(document.hidden));
+  addEventListener('pagehide', () => setHidden(true));
+  addEventListener('pageshow', () => setHidden(document.hidden));
   function setOn(v) { on = v; Save.set('bgm', v); apply(); }
   function setVol(v) { vol = v; Save.set('vol', v); apply(); }
   const seconds = name => TRACKS[name].lead.length * 60 / TRACKS[name].bpm / 4;
   return { unlock, sfx, setOn, setVol, setTrack, setHold, restart, seconds,
-    get on() { return on; }, get vol() { return vol; }, get hold() { return hold; }, get track() { return track; } };
+    get on() { return on; }, get vol() { return vol; }, get hold() { return hold; }, get track() { return track; }, get state() { return ctx ? ctx.state : 'none'; } };
 })();

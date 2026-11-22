@@ -4,7 +4,7 @@
   const ctx = canvas.getContext('2d');
   const ui = document.getElementById('ui');
   const pad = document.getElementById('console'), ctlEl = document.getElementById('controls');
-  const aBtn = document.querySelector('.fb.red'), stickEl = document.getElementById('stick');
+  const aBtn = document.querySelector('.fb.red'), stickEl = document.getElementById('stick'), wrap = document.getElementById('wrap');
   let scale = 1;
 
   // Layout. Desktop/landscape: whole 320x180 world at an integer scale.
@@ -21,13 +21,19 @@
     const availH = innerHeight - pad.offsetHeight - ctlEl.offsetHeight - document.getElementById('langs').offsetHeight - (portrait ? 40 : 78);
     const availW = innerWidth - (portrait ? 24 : 48); // device body + bezel
     let w = W, h = H;
-    if (cam) { const side = Math.min(200, Math.floor(availW / 2)); w = h = side; scale = 2; }
-    else if (portrait) scale = Math.min(availW / W, availH / H);
+    const side = Math.min(200, Math.floor(availW / 2)); // phone: square frame of side*2 px for every scene
+    if (cam) { w = h = side; scale = 2; }
+    else if (portrait) scale = side * 2 / W;
     else scale = Math.max(1, Math.floor(Math.min(availW / W, availH / H)));
     if (force || canvas.width !== w || canvas.height !== h || View.scale !== scale) {
       canvas.width = w; canvas.height = h; ctx.imageSmoothingEnabled = false;
       canvas.style.width = w * scale + 'px'; canvas.style.height = h * scale + 'px';
       ui.style.setProperty('--s', scale);
+      // phone: keep the frame square; 16:9 screens sit centred inside it
+      const frame = portrait ? side * 2 : 0, off = portrait ? Math.round((frame - h * scale) / 2) : 0;
+      wrap.style.height = portrait ? frame + 'px' : '';
+      canvas.style.marginTop = off ? off + 'px' : '';
+      Object.assign(ui.style, portrait ? { top: off + 'px', bottom: 'auto', height: h * scale + 'px' } : { top: '', bottom: '', height: '' });
     }
     View.w = w; View.h = h; View.scale = scale;
     const p = cam && Scenes.current.p;
@@ -44,6 +50,7 @@
     return { x: Math.floor((cx - r.left) / scale) + View.x, y: Math.floor((cy - r.top) / scale) + View.y };
   });
   Input.onAny(() => Audio8.unlock());
+  Input.strictStickWhen(() => Scenes.current === GalleryScene || Scenes.current === LobbyScene);
   Input.wheelWhen(() => !UI.modal && !UI.viewer && (Scenes.current === GalleryScene || Scenes.current === LobbyScene));
 
   const bgm = document.getElementById('bgm'), vol = document.getElementById('vol');
