@@ -116,6 +116,7 @@ function stepActor(p, grid, dt, wantDir) {
 // ---- M0 title ----
 const TitleScene = {
   t: 0,
+  camera: true, camTarget: () => ({ x: W / 2, y: H / 2 }), // phone: the square shows the centre
   enter() {
     this.t = 0; this.p = Pigeon.make(-2, 7, 'right'); this.p.moving = true; this.refresh();
     // logo as HTML text (web font) so it stays sharp at any scale, like the speech bubbles

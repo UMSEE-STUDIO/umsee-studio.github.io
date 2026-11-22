@@ -10,7 +10,7 @@
   // Layout. Desktop/landscape: whole 320x180 world at an integer scale.
   // Portrait phone: rooms use a square window following the pigeon at 2x; fixed screens
   // (title, gallery, career) fill the width (fractional scale, only on phones).
-  let portrait = false;
+  let portrait = false, camScene = null;
   function resize() {
     portrait = innerWidth < 700 && innerHeight > innerWidth;
     document.body.classList.toggle('portrait', portrait);
@@ -36,11 +36,16 @@
       Object.assign(ui.style, portrait ? { top: off + 'px', bottom: 'auto', height: h * scale + 'px' } : { top: '', bottom: '', height: '' });
     }
     View.w = w; View.h = h; View.scale = scale;
-    const p = cam && Scenes.current.p;
-    if (p) {
-      View.x = Math.round(Math.max(0, Math.min(W - w, p.x + 8 - w / 2)));
-      View.y = h >= H ? -Math.floor((h - H) / 2) : Math.round(Math.max(0, Math.min(H - h, p.y - h / 2)));
-    } else { View.x = 0; View.y = 0; }
+    // camera target: the scene's own focus point (camTarget) or the pigeon; pans smoothly
+    const s = Scenes.current, p = cam && s.p;
+    const t = cam && (s.camTarget ? s.camTarget() : p ? { x: p.x + 8, y: p.y } : null);
+    if (t) {
+      const tx = Math.max(0, Math.min(W - w, t.x - w / 2));
+      const ty = h >= H ? -Math.floor((h - H) / 2) : Math.max(0, Math.min(H - h, t.y - h / 2));
+      const snap = force || camScene !== s; camScene = s;
+      View.x = Math.round(snap ? tx : View.x + (tx - View.x) * 0.25);
+      View.y = Math.round(snap ? ty : View.y + (ty - View.y) * 0.25);
+    } else { View.x = 0; View.y = 0; camScene = null; }
   }
   addEventListener('resize', resize);
   resize();

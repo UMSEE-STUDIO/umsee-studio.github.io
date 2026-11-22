@@ -46,6 +46,7 @@ const CareerScene = (() => {
   }
 
   return {
+    camera: true, camTarget: () => ({ x: W / 2, y: H / 2 }),
     enter() {
       t = 0; opened = false;
       Audio8.setTrack('space');

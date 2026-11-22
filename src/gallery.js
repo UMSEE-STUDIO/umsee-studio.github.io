@@ -57,7 +57,7 @@ const GalleryScene = (() => {
         el.addEventListener('click', () => { Audio8.unlock(); walker.face = i % 2 ? 'right' : 'left'; open(i); });
         layer.appendChild(el); imgs.set(i, el);
       }
-      el.style.left = b.x * scale + 'px'; el.style.top = b.y * scale + 'px';
+      el.style.left = (b.x - View.x) * scale + 'px'; el.style.top = (b.y - View.y) * scale + 'px';
       el.style.width = el.style.height = b.w * scale + 'px';
       el.style.zIndex = String(100 - Math.round(b.z * 10));
       el.alt = `${Data.t('untitled')} #${a.no}`;
@@ -68,6 +68,7 @@ const GalleryScene = (() => {
   }
 
   return {
+    camera: true, camTarget: () => ({ x: walker.face === 'left' ? 0 : walker.face === 'right' ? W : W / 2, y: H / 2 }),
     enter(r) {
       setRoom(r || 0); Audio8.setTrack('main'); resetWheelHint(); walker.face = 'up';
       if (!Save.get('enter.gallery', false)) { Save.set('enter.gallery', true); setTimeout(() => UI.say(Data.say('ENTER_GALLERY'), { x: 160, y: 130 }), 600); }
@@ -133,6 +134,7 @@ const LobbyScene = (() => {
   function clear() { layer?.remove(); layer = null; }
 
   return {
+    camera: true, camTarget: () => ({ x: pg ? pg.x + 8 : W / 2, y: H / 2 }),
     enter(from) {
       sel = Number.isInteger(from) ? from : 1; Audio8.setTrack('main');
       reps = ROOMS.map(s => { const l = Data.art.filter(a => a.folder === s); return l[Math.floor(Math.random() * l.length)]; });
@@ -196,11 +198,11 @@ const LobbyScene = (() => {
         const d = DOORS[i];
         if (t.textContent !== Data.t(ROOMS[i])) t.textContent = Data.t(ROOMS[i]);
         t.classList.toggle('on', i === sel);
-        Object.assign(t.style, { left: (d.x + d.w / 2) * scale + 'px', top: 75 * scale + 'px' }); // centre; size and font as the speech bubble
+        Object.assign(t.style, { left: (d.x + d.w / 2 - View.x) * scale + 'px', top: (75 - View.y) * scale + 'px' }); // centre; size and font as the speech bubble
       });
       [...layer.querySelectorAll('img')].forEach((img, i) => {
         const d = DOORS[i], s = 48;
-        Object.assign(img.style, { left: (d.x + (d.w - s) / 2) * scale + 'px', top: 19 * scale + 'px', width: s * scale + 'px', height: s * scale + 'px',
+        Object.assign(img.style, { left: (d.x + (d.w - s) / 2 - View.x) * scale + 'px', top: (19 - View.y) * scale + 'px', width: s * scale + 'px', height: s * scale + 'px',
           borderWidth: Math.max(2, scale * 2) + 'px', borderColor: i === sel ? '#FB128E' : '#FDE003', filter: i === sel ? 'none' : 'brightness(.75)' });
       });
     },
