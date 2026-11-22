@@ -43,9 +43,9 @@
   try { const r = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' }); if (r.ok) v = (await r.json()).v; } catch { /* offline or local */ }
   window.ASSET_V = v;
   const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'src/style.css?v=' + v; document.head.appendChild(css);
-  await new Promise(ok => { css.onload = css.onerror = ok; });
+  // download in parallel, execute in order (async = false)
   for (const f of ['data', 'audio', 'input', 'ui', 'panels', 'scenes', 'world', 'gallery', 'career', 'main']) {
-    await new Promise((ok, fail) => { const s = document.createElement('script'); s.src = `src/${f}.js?v=${v}`; s.onload = ok; s.onerror = fail; document.body.appendChild(s); });
+    const s = document.createElement('script'); s.src = `src/${f}.js?v=${v}`; s.async = false; document.body.appendChild(s);
   }
 })();
 </script>
