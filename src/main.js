@@ -100,6 +100,16 @@
     if (Scenes.current === TitleScene) TitleScene.refresh();
   };
 
+  // Share nudge: now and then (random 25-50 s) a small bubble pops above the share button.
+  const tip = document.getElementById('sharetip');
+  const nudge = () => {
+    if (!document.hidden && !UI.modal && !UI.viewer) {
+      const l = Data.say('SHARE_NUDGE'); if (l.length) { tip.textContent = l[0]; tip.classList.add('on'); setTimeout(() => tip.classList.remove('on'), 4000); }
+    }
+    setTimeout(nudge, 25000 + Math.random() * 25000);
+  };
+  setTimeout(nudge, 8000 + Math.random() * 6000);
+
   // Share (megaphone): system share sheet on phones, copy the link elsewhere.
   document.getElementById('share').addEventListener('click', async () => {
     Audio8.unlock(); Audio8.sfx('click');

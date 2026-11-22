@@ -411,3 +411,31 @@ zh: 打开看看吧。
 tw: 打開看看吧。
 fr: Et si je l’allumais.
 es: ¿Y si la enciendo?
+
+# ---------- 공유 버튼 말풍선 ----------
+
+@SHARE_NUDGE
+[상황] 공유 버튼(🐦📢) 위에 가끔 무작위로 뜨는 말풍선(25~50초 간격, 4초 표시)
+ko: 같이 할 사람?
+en: Anyone want to join?
+ja: 一緒にやる人？
+zh: 有人一起吗？
+tw: 有人一起嗎？
+fr: Quelqu’un se joint à moi ?
+es: ¿Alguien se apunta?
+---
+ko: 친구한테 알려 줄까?
+en: Tell a friend?
+ja: 友だちに教えようか？
+zh: 告诉朋友吧？
+tw: 告訴朋友吧？
+fr: On le dit à un ami ?
+es: ¿Se lo cuento a alguien?
+---
+ko: 여기, 같이 구경해요!
+en: Come look around with me!
+ja: ねえ、一緒に見よう！
+zh: 一起来逛逛吧！
+tw: 一起來逛逛吧！
+fr: Venez visiter avec moi !
+es: ¡Ven a mirar conmigo!
