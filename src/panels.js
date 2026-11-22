@@ -61,7 +61,6 @@ const Panels = (() => {
   function about() {
     const c = Data.career;
     UI.open(`<h2>${t('about')}</h2><p class="name">${e(c.name)}</p>${Data.about.intro.map(x => `<p class="intro">${e(x)}</p>`).join('')}
-      <ul>${c.education.map(x => `<li>${e(x)}</li>`).join('')}</ul>
       <p>${ext('https://www.instagram.com/ummm.see/', Data.t('instagram'))}</p>`);
   }
 

@@ -338,7 +338,8 @@ function makeRoom(def) {
       // already discovered: repeat the soft line once per visit (page load), so the pigeon keeps talking
       if (o.disc && !saidThisVisit.has(o.id)) { saidThisVisit.add(o.id); this.say(o.disc); return; }
       if (o.near) { this.say(o.near); return; }
-      if (o.exit) { if (!this.exitSaid && this.time > 2.5 && !def.hesitate) { this.exitSaid = true; this.say('EXIT_ROOM'); } return; }
+      // only after walking into the room (>= 2 rows) and coming back to the door, never right on entry
+      if (o.exit) { if (!this.exitSaid && this.far >= 2 && !def.hesitate) { this.exitSaid = true; this.say('EXIT_ROOM'); } return; }
       if (!o.disc && !Save.get('hint.' + o.id, false)) { Save.set('hint.' + o.id, true); this.say('HINT_INTERACT'); }
     },
     draw(ctx) {

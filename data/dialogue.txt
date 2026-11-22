@@ -227,14 +227,38 @@ fr: À qui écrire.
 es: ¿A quién le escribo?
 
 @EXIT_ROOM
-[상황] 방 출구에 다가갔을 때
-ko: 이쯤에서 나갈까.
-en: Maybe I'll head out.
-ja: そろそろ出ようか。
-zh: 差不多该出去了。
-tw: 差不多該出去了。
-fr: Je sors, peut-être.
-es: Quizá ya salga.
+[상황] 방에서 안쪽까지 들어갔다가 다시 출구 쪽으로 다가왔을 때(무작위 한 묶음). 예전 대사 "이쯤에서 나갈까"는 사용자 요청으로 교체
+ko: 다른 방도 궁금하다.
+en: I'm curious about the other rooms.
+ja: 他の部屋も気になる。
+zh: 其他房间也挺好奇的。
+tw: 其他房間也挺好奇的。
+fr: Les autres pièces m’intriguent aussi.
+es: Tengo curiosidad por las otras salas.
+---
+ko: 구석구석 구경해 보자.
+en: Let's look in every corner.
+ja: すみずみまで見てまわろう。
+zh: 每个角落都看看吧。
+tw: 每個角落都看看吧。
+fr: Allons voir dans tous les coins.
+es: Vamos a mirar cada rincón.
+---
+ko: 아직 못 본 곳이 있을지도.
+en: Maybe there's a spot I haven't seen yet.
+ja: まだ見ていない場所があるかも。
+zh: 也许还有没看过的地方。
+tw: 也許還有沒看過的地方。
+fr: Il reste peut-être un coin à découvrir.
+es: Quizá quede algún rincón por ver.
+---
+ko: 다음엔 어디로 가 볼까.
+en: Where to next, I wonder.
+ja: 次はどこへ行こうかな。
+zh: 下一站去哪里呢？
+tw: 下一站去哪裡呢？
+fr: Où aller ensuite, je me demande.
+es: ¿Adónde iré ahora?
 
 @ALL_FOUND
 [상황] 모든 방(M2~M6)을 발견했을 때(1회)
