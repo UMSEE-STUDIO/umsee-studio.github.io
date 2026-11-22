@@ -68,7 +68,7 @@ const GalleryScene = (() => {
   }
 
   return {
-    camera: true, camTarget: () => ({ x: walker.face === 'left' ? 0 : walker.face === 'right' ? W : W / 2, y: H / 2 }),
+    camera: true, camTarget: () => ({ x: W / 2, y: H / 2 }), // phone: fixed square, no panning
     enter(r) {
       setRoom(r || 0); Audio8.setTrack('main'); resetWheelHint(); walker.face = 'up';
       if (!Save.get('enter.gallery', false)) { Save.set('enter.gallery', true); setTimeout(() => UI.say(Data.say('ENTER_GALLERY'), { x: 160, y: 130 }), 600); }

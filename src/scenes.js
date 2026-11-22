@@ -118,7 +118,7 @@ const TitleScene = {
   t: 0,
   camera: true, camTarget: () => ({ x: W / 2, y: H / 2 }), // phone: the square shows the centre
   enter() {
-    this.t = 0; this.p = Pigeon.make(-2, 7, 'right'); this.p.moving = true; this.refresh();
+    this.t = 0; this.p = Pigeon.make(5, 7, 'right'); this.p.moving = true; this.refresh(); // visible at once (phone view starts ~x68)
     // logo as HTML text (web font) so it stays sharp at any scale, like the speech bubbles
     this.logo = document.createElement('div'); this.logo.className = 'logo';
     this.logo.innerHTML = '<div class="l1">UMMM... SEE?</div><div class="l2">PIXEL ARCADE</div>';
@@ -127,7 +127,7 @@ const TitleScene = {
   leave() { this.logo?.remove(); this.logo = null; },
   refresh() { UI.setLabel(`${Data.t('press')}\n${Data.t('langHint')}: ${Data.t('langName')}`, true); },
   update(dt) {
-    this.t += dt; this.p.t += dt; this.p.x += dt * 24; if (this.p.x > W + 16) this.p.x = -32;
+    this.t += dt; this.p.t += dt; this.p.x += dt * 28; if (this.p.x > W + 16) this.p.x = -32;
     const dl = Input.consume('dir:left') ? -1 : Input.consume('dir:right') ? 1 : 0;
     if (dl) { Data.setLang(LANGS[(LANGS.indexOf(Data.lang) + dl + LANGS.length) % LANGS.length], true); this.refresh(); Audio8.sfx('click'); }
     const tap = Input.takeTap();

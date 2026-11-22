@@ -109,12 +109,15 @@
 
   // Phone/browser Back = B (Esc). A guard history entry absorbs Back. Mobile Chrome skips entries added
   // without a user gesture, so the guard is (re)added on the next touch/key/click, never at load.
-  let guarded = false;
-  const guard = () => { if (!guarded) { history.pushState({ umw: 1 }, ''); guarded = true; } };
+  // Up to 3 guard entries are kept (each gesture tops them up), with a '#play' URL so every browser
+  // (Samsung Internet included) records them. Title screen: Back skips all guards and leaves the site.
+  let depth = 0;
+  if (location.hash === '#play') history.replaceState(null, '', location.pathname + location.search);
+  const guard = () => { if (depth < 3) { history.pushState({ umw: 1 }, '', '#play'); depth++; } };
   ['pointerdown', 'keydown'].forEach(t => addEventListener(t, guard, true));
   addEventListener('popstate', () => {
-    guarded = false;
-    if (Scenes.current === TitleScene && !UI.modal && !UI.viewer) { history.back(); return; } // title: leave the site
+    depth = Math.max(0, depth - 1);
+    if (Scenes.current === TitleScene && !UI.modal && !UI.viewer) { history.go(-(depth + 1)); depth = 0; return; }
     Input.repeat('b');
   });
 
