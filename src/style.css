@@ -138,3 +138,4 @@ body.portrait #console { padding: 10px 4px 14px; gap: 8px; }
 @keyframes nudge { 0%, 60%, 100% { translate: 0 0; } 70% { translate: 0 -7px; } 80% { translate: 0 0; } 90% { translate: 0 -7px; } }
 body.portrait .bubble { max-width: 82%; }
 body.portrait #wrap { background: #0b0f2a; display: flow-root; } /* flow-root: the canvas top margin must not collapse into #wrap */
+body.portrait .logo { top: 26%; } /* phone title: space between the pink line and the logo */

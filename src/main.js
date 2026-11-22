@@ -59,9 +59,16 @@
   Input.wheelWhen(() => !UI.modal && !UI.viewer && (Scenes.current === GalleryScene || Scenes.current === LobbyScene));
 
   const bgm = document.getElementById('bgm'), vol = document.getElementById('vol');
-  const syncBgm = () => document.querySelectorAll('#bgm, .fb.blue').forEach(b => b.classList.toggle('off', !Audio8.on));
+  // The ♪ button shows what you hear: "on" only while music is actually playing. After a reload the
+  // browser blocks sound until the first touch, so it starts as "off"; pressing it then turns music on.
+  const playing = () => Audio8.on && !Audio8.hold && Audio8.state === 'running';
+  const syncBgm = () => { const on = playing(); document.querySelectorAll('#bgm, .fb.blue').forEach(b => { if (b.classList.contains('off') === on) b.classList.toggle('off', !on); }); };
   syncBgm(); vol.value = Math.round(Audio8.vol * 100);
-  bgm.addEventListener('click', () => { Audio8.unlock(); Audio8.setOn(!Audio8.on); syncBgm(); });
+  bgm.addEventListener('click', () => {
+    const wasPlaying = playing();
+    Audio8.unlock(); Audio8.setOn(!wasPlaying);
+    setTimeout(syncBgm, 50);
+  });
   // M key = mute toggle (same as the ♪ button)
   addEventListener('keydown', e => { if (e.code === 'KeyM' && !e.repeat) { e.preventDefault(); bgm.click(); } });
   vol.addEventListener('input', () => { Audio8.unlock(); Audio8.setVol(vol.value / 100); });
@@ -107,7 +114,7 @@
   function frame(now) {
     const dt = Math.min(0.25, (now - last) / 1000); last = now; acc += dt;
     while (acc >= STEP) { Scenes.update(STEP); acc -= STEP; }
-    layout();
+    layout(); syncBgm();
     const showA = Hint.a && !UI.modal && !UI.viewer, showStick = Hint.stick && !UI.modal && !UI.viewer;
     if (aBtn.classList.contains('hint') !== showA) aBtn.classList.toggle('hint', showA);
     if (stickEl.classList.contains('hint') !== showStick) stickEl.classList.toggle('hint', showStick);
