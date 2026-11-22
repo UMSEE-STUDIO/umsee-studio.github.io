@@ -105,7 +105,7 @@ body { display: flex; flex-direction: column; align-items: center; justify-conte
 @keyframes tvon { 0% { opacity: 1; transform: scaleY(.02); } 20% { transform: scaleY(1); } 80% { opacity: .9; background-position: 13px 5px, 0 2px; } 100% { opacity: 0; visibility: hidden; } }
 
 /* career: two blank lines between sections */
-.crt section { margin-bottom: 2.8em; }
+.crt section { margin-bottom: 2.7em; } /* two blank rows before the next heading */
 
 /* language flags */
 #langs { display: flex; gap: 8px; justify-content: flex-end; width: 100%; padding: 0 6px 8px; box-sizing: border-box; }
@@ -146,3 +146,11 @@ body.portrait .logo { top: 26%; } /* phone title: space between the pink line an
 #share { background: #fff; border: 0; border-radius: 6px; padding: 3px 6px; margin: 0 0 8px 6px; line-height: 0; cursor: pointer; box-shadow: 0 2px 0 #0002; }
 #share:hover { filter: brightness(.95); }
 body.portrait #share { margin: 0 0 6px 2px; padding: 2px 4px; }
+
+/* career entries: pink headings, one blank row between entries, date / exhibition / venue */
+.crt h3 { color: #FB128E; font-size: 1.5em; margin: 0 0 1.35em; }
+.crt .entry { margin-bottom: 1.35em; }
+.crt .entry .d { color: #FDE003; }
+.crt .entry .t { color: #f4f1ff; }
+.crt .entry .v { color: #CEBEF5; }
+.crt .note { color: #f4f1ff; margin-bottom: 1.35em; }

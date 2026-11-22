@@ -7,11 +7,16 @@ const CareerScene = (() => {
     if (!items?.length) return '';
     return `<section><h3>${e(Data.t(key))}</h3>${items.map(fmt).join('')}</section>`;
   }
-  const line = x => typeof x === 'string' ? `<p>${e(x)}</p>` : `<p><b>${e(x.date || '')}</b> ${e(x.title || '')}</p>`;
-  // Collaboration: date, title, event and partner only. Confidential items show as a mystery line.
+  // Each entry: date / exhibition / venue on three lines. The stored text is not changed: "title - venue, city"
+  // is only split for display at the last dash ("-" or "–") whose right side holds a comma (venue, city).
+  const split = t => { const m = String(t).match(/^(.*\S)\s*[-–]\s*([^-–]*,[^-–]*)$/); return m ? [m[1], m[2].trim()] : [String(t), '']; };
+  const entry = (date, text, venue) => `<div class="entry">${date ? `<div class="d">${e(date)}</div>` : ''}<div class="t">${e(text)}</div>${venue ? `<div class="v">${e(venue)}</div>` : ''}</div>`;
+  const line = x => typeof x === 'string' ? entry('', ...split(x)) : entry(x.date, ...split(x.title || ''));
+  const para = x => `<p class="note">${e(x)}</p>`;
+  // Collaboration: date / title / event · partner. Confidential items show as a mystery line.
   const collab = c => c.confidential
-    ? `<p><b>?</b> ${e(Data.t('secretCollab'))}</p>`
-    : `<p><b>${e(c.date || '')}</b> ${e(c.title)}<br>${[c.event, c.partner].filter(Boolean).map(e).join(' · ')}</p>`;
+    ? entry('?', Data.t('secretCollab'), '')
+    : entry(c.date, c.title, [c.event, c.partner].filter(Boolean).join(' · '));
 
   // Order (user, 2026-11-22): collaboration > solo > group > personal work > artist note. Profile/education excluded.
   function content() {
@@ -20,7 +25,7 @@ const CareerScene = (() => {
       section('solo', c.solo, line) +
       section('group', c.group, line) +
       section('other', c.other, line) +
-      section('artistNote', c.artistNote, line);
+      section('artistNote', c.artistNote, para);
   }
 
   function open() {
