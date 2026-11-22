@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>UMSEE Pixel Arcade</title>
+<link rel="icon" href="data:,">
+<link rel="preload" href="assets/fonts/Galmuri11.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<div id="device">
+  <div id="langs" role="group" aria-label="language"></div>
+  <div id="bezel">
+    <div id="wrap">
+      <canvas id="screen" width="320" height="180"></canvas>
+      <div id="ui"></div>
+    </div>
+  </div>
+  <div id="controls" aria-live="polite"></div>
+  <div id="console">
+    <div id="stick" aria-label="joystick"><div class="ring"></div><div class="shaft"></div><div class="knob"></div></div>
+    <div class="mid">
+      <div class="pills">
+        <button class="pill" id="help" aria-label="help">?</button>
+        <button class="pill" id="bgm" aria-label="bgm">&#9835;</button>
+      </div>
+      <input id="vol" type="range" min="0" max="100" aria-label="volume">
+    </div>
+    <div class="face">
+      <button class="fb green" data-alias="help" aria-label="help">?</button>
+      <button class="fb blue" data-alias="bgm" aria-label="bgm">&#9835;</button>
+      <button class="fb yellow" data-btn="b" aria-label="B">B</button>
+      <button class="fb red" data-btn="a" aria-label="A">A</button>
+    </div>
+  </div>
+</div>
+<script src="src/data.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/input.js"></script>
+<script src="src/ui.js"></script>
+<script src="src/panels.js"></script>
+<script src="src/scenes.js"></script>
+<script src="src/world.js"></script>
+<script src="src/gallery.js"></script>
+<script src="src/career.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>

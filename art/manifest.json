@@ -1,0 +1,806 @@
+[
+ {
+  "id": "acrylic__1751258210936",
+  "folder": "acrylic",
+  "source_size": [
+   4284,
+   4284
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1751258210936.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1751258210936.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1751258210936.png"
+ },
+ {
+  "id": "acrylic__1756464090106",
+  "folder": "acrylic",
+  "source_size": [
+   3213,
+   5712
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic/acrylic__1756464090106.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1756464090106.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1756464090106.png"
+ },
+ {
+  "id": "acrylic__1788141270594",
+  "folder": "acrylic",
+  "source_size": [
+   2515,
+   2515
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141270594.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141270594.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141270594.png"
+ },
+ {
+  "id": "acrylic__1788141270671",
+  "folder": "acrylic",
+  "source_size": [
+   2482,
+   2482
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141270671.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141270671.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141270671.png"
+ },
+ {
+  "id": "acrylic__1788141270731",
+  "folder": "acrylic",
+  "source_size": [
+   2643,
+   2643
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141270731.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141270731.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141270731.png"
+ },
+ {
+  "id": "acrylic__1788141270782",
+  "folder": "acrylic",
+  "source_size": [
+   2597,
+   2597
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141270782.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141270782.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141270782.png"
+ },
+ {
+  "id": "acrylic__1788141270840",
+  "folder": "acrylic",
+  "source_size": [
+   2593,
+   2593
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141270840.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141270840.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141270840.png"
+ },
+ {
+  "id": "acrylic__1788141270897",
+  "folder": "acrylic",
+  "source_size": [
+   2652,
+   2652
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141270897.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141270897.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141270897.png"
+ },
+ {
+  "id": "acrylic__1788141270955",
+  "folder": "acrylic",
+  "source_size": [
+   2714,
+   2714
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141270955.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141270955.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141270955.png"
+ },
+ {
+  "id": "acrylic__1788141271016",
+  "folder": "acrylic",
+  "source_size": [
+   2573,
+   2573
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271016.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271016.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271016.png"
+ },
+ {
+  "id": "acrylic__1788141271070",
+  "folder": "acrylic",
+  "source_size": [
+   2584,
+   2584
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271070.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271070.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271070.png"
+ },
+ {
+  "id": "acrylic__1788141271197",
+  "folder": "acrylic",
+  "source_size": [
+   2565,
+   2565
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271197.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271197.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271197.png"
+ },
+ {
+  "id": "acrylic__1788141271250",
+  "folder": "acrylic",
+  "source_size": [
+   2634,
+   2634
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271250.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271250.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271250.png"
+ },
+ {
+  "id": "acrylic__1788141271311",
+  "folder": "acrylic",
+  "source_size": [
+   2566,
+   2566
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271311.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271311.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271311.png"
+ },
+ {
+  "id": "acrylic__1788141271371",
+  "folder": "acrylic",
+  "source_size": [
+   2529,
+   2529
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271371.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271371.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271371.png"
+ },
+ {
+  "id": "acrylic__1788141271430",
+  "folder": "acrylic",
+  "source_size": [
+   2607,
+   2607
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271430.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271430.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271430.png"
+ },
+ {
+  "id": "acrylic__1788141271498",
+  "folder": "acrylic",
+  "source_size": [
+   2505,
+   2505
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271498.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271498.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271498.png"
+ },
+ {
+  "id": "acrylic__1788141271553",
+  "folder": "acrylic",
+  "source_size": [
+   2489,
+   2489
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271553.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271553.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271553.png"
+ },
+ {
+  "id": "acrylic__1788141271609",
+  "folder": "acrylic",
+  "source_size": [
+   2546,
+   2546
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271609.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271609.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271609.png"
+ },
+ {
+  "id": "acrylic__1788141271663",
+  "folder": "acrylic",
+  "source_size": [
+   2665,
+   2665
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271663.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271663.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271663.png"
+ },
+ {
+  "id": "acrylic__1788141271718",
+  "folder": "acrylic",
+  "source_size": [
+   2564,
+   2564
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271718.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271718.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271718.png"
+ },
+ {
+  "id": "acrylic__1788141271775",
+  "folder": "acrylic",
+  "source_size": [
+   2648,
+   2648
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271775.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271775.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271775.png"
+ },
+ {
+  "id": "acrylic__1788141271835",
+  "folder": "acrylic",
+  "source_size": [
+   2371,
+   2371
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271835.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271835.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271835.png"
+ },
+ {
+  "id": "acrylic__1788141271894",
+  "folder": "acrylic",
+  "source_size": [
+   2580,
+   2580
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271894.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271894.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271894.png"
+ },
+ {
+  "id": "acrylic__1788141271960",
+  "folder": "acrylic",
+  "source_size": [
+   2454,
+   2454
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141271960.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141271960.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141271960.png"
+ },
+ {
+  "id": "acrylic__1788141272017",
+  "folder": "acrylic",
+  "source_size": [
+   2523,
+   2523
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141272017.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141272017.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141272017.png"
+ },
+ {
+  "id": "acrylic__1788141272076",
+  "folder": "acrylic",
+  "source_size": [
+   2475,
+   2475
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141272076.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141272076.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141272076.png"
+ },
+ {
+  "id": "acrylic__1788141272131",
+  "folder": "acrylic",
+  "source_size": [
+   2377,
+   2377
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141272131.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141272131.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141272131.png"
+ },
+ {
+  "id": "acrylic__1788141272262",
+  "folder": "acrylic",
+  "source_size": [
+   2546,
+   2546
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141272262.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141272262.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141272262.png"
+ },
+ {
+  "id": "acrylic__1788141272331",
+  "folder": "acrylic",
+  "source_size": [
+   2612,
+   2612
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141272331.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141272331.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141272331.png"
+ },
+ {
+  "id": "acrylic__1788141272411",
+  "folder": "acrylic",
+  "source_size": [
+   2505,
+   2505
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141272411.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141272411.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141272411.png"
+ },
+ {
+  "id": "acrylic__1788141276161",
+  "folder": "acrylic",
+  "source_size": [
+   2662,
+   2662
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788141276161.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788141276161.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788141276161.png"
+ },
+ {
+  "id": "acrylic__1788248249812",
+  "folder": "acrylic",
+  "source_size": [
+   4284,
+   4284
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic/acrylic__1788248249812.jpg",
+  "thumb": "art/thumb/acrylic/acrylic__1788248249812.jpg",
+  "pixel": "art/pixel/acrylic/acrylic__1788248249812.png"
+ },
+ {
+  "id": "acrylic-mini-1",
+  "folder": "acrylic-mini",
+  "source_size": [
+   864,
+   1536
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-1.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-1.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-1.png"
+ },
+ {
+  "id": "acrylic-mini-10",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-10.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-10.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-10.png"
+ },
+ {
+  "id": "acrylic-mini-11",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-11.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-11.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-11.png"
+ },
+ {
+  "id": "acrylic-mini-2",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-2.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-2.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-2.png"
+ },
+ {
+  "id": "acrylic-mini-3",
+  "folder": "acrylic-mini",
+  "source_size": [
+   940,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-3.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-3.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-3.png"
+ },
+ {
+  "id": "acrylic-mini-4",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-4.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-4.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-4.png"
+ },
+ {
+  "id": "acrylic-mini-5",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-5.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-5.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-5.png"
+ },
+ {
+  "id": "acrylic-mini-6",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-6.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-6.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-6.png"
+ },
+ {
+  "id": "acrylic-mini-7",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-7.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-7.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-7.png"
+ },
+ {
+  "id": "acrylic-mini-8",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-8.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-8.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-8.png"
+ },
+ {
+  "id": "acrylic-mini-9",
+  "folder": "acrylic-mini",
+  "source_size": [
+   941,
+   1672
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini-9.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini-9.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini-9.png"
+ },
+ {
+  "id": "acrylic-mini__1768877374477",
+  "folder": "acrylic-mini",
+  "source_size": [
+   1200,
+   1200
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic-mini/acrylic-mini__1768877374477.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__1768877374477.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__1768877374477.png"
+ },
+ {
+  "id": "acrylic-mini__1768892729462",
+  "folder": "acrylic-mini",
+  "source_size": [
+   1200,
+   1200
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic-mini/acrylic-mini__1768892729462.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__1768892729462.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__1768892729462.png"
+ },
+ {
+  "id": "acrylic-mini__1768918943018-mint",
+  "folder": "acrylic-mini",
+  "source_size": [
+   1200,
+   1200
+  ],
+  "square_crop": null,
+  "web": "art/web/acrylic-mini/acrylic-mini__1768918943018-mint.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__1768918943018-mint.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__1768918943018-mint.png"
+ },
+ {
+  "id": "acrylic-mini__1768918943018",
+  "folder": "acrylic-mini",
+  "source_size": [
+   1200,
+   1200
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__1768918943018.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__1768918943018.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__1768918943018.png"
+ },
+ {
+  "id": "acrylic-mini__1769064695191",
+  "folder": "acrylic-mini",
+  "source_size": [
+   3024,
+   4032
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__1769064695191.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__1769064695191.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__1769064695191.png"
+ },
+ {
+  "id": "acrylic-mini__20250315_174908",
+  "folder": "acrylic-mini",
+  "source_size": [
+   3000,
+   4000
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__20250315_174908.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__20250315_174908.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__20250315_174908.png"
+ },
+ {
+  "id": "acrylic-mini__20250315_174912",
+  "folder": "acrylic-mini",
+  "source_size": [
+   3000,
+   4000
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__20250315_174912.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__20250315_174912.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__20250315_174912.png"
+ },
+ {
+  "id": "acrylic-mini__20250315_174916",
+  "folder": "acrylic-mini",
+  "source_size": [
+   3000,
+   4000
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__20250315_174916.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__20250315_174916.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__20250315_174916.png"
+ },
+ {
+  "id": "acrylic-mini__20250315_174921",
+  "folder": "acrylic-mini",
+  "source_size": [
+   3000,
+   4000
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__20250315_174921.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__20250315_174921.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__20250315_174921.png"
+ },
+ {
+  "id": "acrylic-mini__20250315_174941",
+  "folder": "acrylic-mini",
+  "source_size": [
+   3000,
+   4000
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__20250315_174941.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__20250315_174941.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__20250315_174941.png"
+ },
+ {
+  "id": "acrylic-mini__20250315_175246",
+  "folder": "acrylic-mini",
+  "source_size": [
+   3000,
+   4000
+  ],
+  "square_crop": true,
+  "web": "art/web/acrylic-mini/acrylic-mini__20250315_175246.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__20250315_175246.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__20250315_175246.png"
+ },
+ {
+  "id": "acrylic-mini__IMG_1263",
+  "folder": "acrylic-mini",
+  "source_size": [
+   1051,
+   1051
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic-mini/acrylic-mini__IMG_1263.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__IMG_1263.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__IMG_1263.png"
+ },
+ {
+  "id": "acrylic-mini__IMG_1264",
+  "folder": "acrylic-mini",
+  "source_size": [
+   982,
+   982
+  ],
+  "square_crop": false,
+  "web": "art/web/acrylic-mini/acrylic-mini__IMG_1264.jpg",
+  "thumb": "art/thumb/acrylic-mini/acrylic-mini__IMG_1264.jpg",
+  "pixel": "art/pixel/acrylic-mini/acrylic-mini__IMG_1264.png"
+ },
+ {
+  "id": "drawings__20250104_131737",
+  "folder": "drawings",
+  "source_size": [
+   2888,
+   2888
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__20250104_131737.jpg",
+  "thumb": "art/thumb/drawings/drawings__20250104_131737.jpg",
+  "pixel": "art/pixel/drawings/drawings__20250104_131737.png"
+ },
+ {
+  "id": "drawings__20250104_132722",
+  "folder": "drawings",
+  "source_size": [
+   3000,
+   3000
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__20250104_132722.jpg",
+  "thumb": "art/thumb/drawings/drawings__20250104_132722.jpg",
+  "pixel": "art/pixel/drawings/drawings__20250104_132722.png"
+ },
+ {
+  "id": "drawings__20250104_133136",
+  "folder": "drawings",
+  "source_size": [
+   3000,
+   3000
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__20250104_133136.jpg",
+  "thumb": "art/thumb/drawings/drawings__20250104_133136.jpg",
+  "pixel": "art/pixel/drawings/drawings__20250104_133136.png"
+ },
+ {
+  "id": "drawings__20250511_170722",
+  "folder": "drawings",
+  "source_size": [
+   3000,
+   4000
+  ],
+  "square_crop": true,
+  "web": "art/web/drawings/drawings__20250511_170722.jpg",
+  "thumb": "art/thumb/drawings/drawings__20250511_170722.jpg",
+  "pixel": "art/pixel/drawings/drawings__20250511_170722.png"
+ },
+ {
+  "id": "drawings__IMG_5764",
+  "folder": "drawings",
+  "source_size": [
+   2832,
+   2832
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__IMG_5764.jpg",
+  "thumb": "art/thumb/drawings/drawings__IMG_5764.jpg",
+  "pixel": "art/pixel/drawings/drawings__IMG_5764.png"
+ },
+ {
+  "id": "drawings__IMG_5765",
+  "folder": "drawings",
+  "source_size": [
+   1932,
+   1932
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__IMG_5765.jpg",
+  "thumb": "art/thumb/drawings/drawings__IMG_5765.jpg",
+  "pixel": "art/pixel/drawings/drawings__IMG_5765.png"
+ },
+ {
+  "id": "drawings__IMG_5766",
+  "folder": "drawings",
+  "source_size": [
+   1932,
+   1932
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__IMG_5766.jpg",
+  "thumb": "art/thumb/drawings/drawings__IMG_5766.jpg",
+  "pixel": "art/pixel/drawings/drawings__IMG_5766.png"
+ },
+ {
+  "id": "drawings__IMG_5768",
+  "folder": "drawings",
+  "source_size": [
+   1932,
+   1932
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__IMG_5768.jpg",
+  "thumb": "art/thumb/drawings/drawings__IMG_5768.jpg",
+  "pixel": "art/pixel/drawings/drawings__IMG_5768.png"
+ },
+ {
+  "id": "drawings__extra_canvas_bluegray",
+  "folder": "drawings",
+  "source_size": [
+   1932,
+   1932
+  ],
+  "square_crop": true,
+  "web": "art/web/drawings/drawings__extra_canvas_bluegray.jpg",
+  "thumb": "art/thumb/drawings/drawings__extra_canvas_bluegray.jpg",
+  "pixel": "art/pixel/drawings/drawings__extra_canvas_bluegray.png"
+ },
+ {
+  "id": "drawings__extra_playwork_onemore",
+  "folder": "drawings",
+  "source_size": [
+   1932,
+   1932
+  ],
+  "square_crop": false,
+  "web": "art/web/drawings/drawings__extra_playwork_onemore.jpg",
+  "thumb": "art/thumb/drawings/drawings__extra_playwork_onemore.jpg",
+  "pixel": "art/pixel/drawings/drawings__extra_playwork_onemore.png"
+ }
+]

@@ -1,0 +1,406 @@
+{
+ "name": "엄재원 ( UMSEE )",
+ "education": [
+  "홍익대학교 디자인 컨텐츠 대학원 금속 액세사리 디자인 전공 수료",
+  "현 논문 과정"
+ ],
+ "artistNote": [
+  "기억속에 존재하는 기억 그리고 회상을 파편화, 이미지화 시켜 프레임 안에 집합시킨다. 집합이 된 이 대상은 20세기 초 한스벨머(Hans Bellmer, 1902-1975)의 초현실주의 영향을 받았다.",
+  "초현실주의자들이 20세기 초 정신분석학에 영향을 받아 무의식의 세계를 탐험했던 것처럼 100년이 지난 지금 우리 사회의 정신상을 분열적이고 파편적인 이미지로 재구성한다.",
+  "이 형태들은 어떤 사물에 대한 감각적 인상을 떠오르게 한다. 다시 말하면 우리가 미디어를 통해 대면하고 있는 과거 또는 현재의 사회상이 반영되는 것이다."
+ ],
+ "solo": [
+  {
+   "date": "2026.11",
+   "title": "ready get set go - Gallery Ilsang, 서울"
+  },
+  {
+   "date": "2026.08",
+   "title": "UMJAEWON FRUITSUM THIRTH- ONE - ljl artspace, 서울"
+  },
+  {
+   "date": "2026.03",
+   "title": "MEMORIES - JBOX gallery, 서울"
+  },
+  {
+   "date": "2024.12",
+   "title": "붉은 레인을 질주하는 Sprinter - GS Tower The Street Gallery, 서울"
+  },
+  {
+   "date": "2024.03",
+   "title": "Even if i'm lonely or sad I don't cry - 스페이스금채, 서울"
+  },
+  {
+   "date": "2023.10",
+   "title": "happy ending is mine - 갤러리다온, 서울"
+  },
+  {
+   "date": "2023.08",
+   "title": "신진작가프로젝트 올해의작가 Fragmented Society - 갤러리전, 대구"
+  },
+  {
+   "date": "2022.07",
+   "title": "이달의작가 I really didn't know that you would leave me - 갤러리소연, 서울"
+  }
+ ],
+ "collaboration": [
+  {
+   "id": "COL-01",
+   "title": "Fantastic power x Fun",
+   "date": "2026.03",
+   "event": "인터배터리 2026",
+   "partner": "삼성SDI",
+   "venue": "코엑스, 서울",
+   "links": [
+    {
+     "type": "article",
+     "label": "삼성SDI 뉴스룸 (보도자료 원문)",
+     "url": "https://news.samsungsdi.com/ko/articleView?seq=424"
+    },
+    {
+     "type": "press",
+     "label": "삼성SDI 보도자료 (공식 사이트)",
+     "url": "https://www.samsungsdi.co.kr/sdi-now/sdi-news/4781.html"
+    },
+    {
+     "type": "press",
+     "label": "SAMSUNG SDI press release (EN)",
+     "url": "https://news.samsungsdi.com/global/press/view?seq=383"
+    },
+    {
+     "type": "news",
+     "label": "ZDNet Korea",
+     "url": "https://zdnet.co.kr/view/?no=20260309085046"
+    },
+    {
+     "type": "news",
+     "label": "네이트 뉴스",
+     "url": "https://m.news.nate.com/view/20260309n32505"
+    }
+   ],
+   "press_short": {
+    "label": "보도자료 쇼츠",
+    "url": "https://youtube.com/shorts/Kd8QUiz-798?si=BGC7o_wgxxSVsLXe"
+   }
+  },
+  {
+   "id": "COL-02",
+   "title": "SAMSUNG SDI 협업",
+   "partner": "삼성SDI",
+   "links": [],
+   "date": "2026.03"
+  },
+  {
+   "id": "COL-03",
+   "confidential": true,
+   "status": "진행중"
+  }
+ ],
+ "other": [
+  "작품소장 - hiersun ( 북경, 중국 )",
+  "제2회 한강비엔날레 창작우수작가상",
+  "SOLID HOMME 실버장신구제작",
+  "빅뱅태양 오너먼트제작"
+ ],
+ "group": [
+  {
+   "date": "2026.11",
+   "title": "인천아트쇼2026 - 송도컨벤시아, 인천"
+  },
+  {
+   "date": "2026.10",
+   "title": "뱅크아트페어 - 세택, 서울"
+  },
+  {
+   "date": "2026.10",
+   "title": "2026 제주국제아트페어 JIAF - ICC JEJU, 제주"
+  },
+  {
+   "date": "2026.06",
+   "title": "서울아트살롱 - 신라호텔, 서울"
+  },
+  {
+   "date": "2026.06",
+   "title": "조형아트서울 PLAS - 코엑스, 서울"
+  },
+  {
+   "date": "2026.06",
+   "title": "UIAF 울산 국제아트페어 - 울산전시컨벤션센터, 울산"
+  },
+  {
+   "date": "2026.02",
+   "title": "서울 리빙 디자인페어 - 코엑스, 서울"
+  },
+  {
+   "date": "2026.01",
+   "title": "월드아트페스타 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.12",
+   "title": "서울아트쇼2025 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.12",
+   "title": "홈.테이블데코페어 & 블루아트페어 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.12",
+   "title": "공예트렌드페어 2025 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.11",
+   "title": "everting inaugural exhibition- 유민갤러리, 서울"
+  },
+  {
+   "date": "2025.11",
+   "title": "pink art fair - JW 메리어트호텔, 서울"
+  },
+  {
+   "date": "2025.11",
+   "title": "업라이징 페스타 - 세택, 서울"
+  },
+  {
+   "date": "2025.11",
+   "title": "인천아트쇼 - 송도컨벤시아, 인천"
+  },
+  {
+   "date": "2025.10",
+   "title": "아트광주 - 김대중컨벤션센터, 광주"
+  },
+  {
+   "date": "2025.08",
+   "title": "bank art fair - 세택, 서울"
+  },
+  {
+   "date": "2025.08",
+   "title": "Soul of Seoul - DDP ART HALL, 서울"
+  },
+  {
+   "date": "2025.06",
+   "title": "gallerise art fair in suwon 2024화랑미술제 - 수원컨벤션센터, 광교"
+  },
+  {
+   "date": "2025.05",
+   "title": "Study x PLAS ASIA ART FAIR MASK AWARD 2025 - 그랑큐브 오사카, 일본"
+  },
+  {
+   "date": "2025.05",
+   "title": "SEATTLE ART FAIR - Lumen Field Event Center, 시애틀"
+  },
+  {
+   "date": "2025.05",
+   "title": "PLAS ART SHOW 2025 - 스타필드 고양 작은미술관, 일산"
+  },
+  {
+   "date": "2025.05",
+   "title": "함께 ...그리고 4인전 - fandomusartgallery, 서울"
+  },
+  {
+   "date": "2025.05",
+   "title": "gallerise art fair in suwon 2024화랑미술제 - 수원컨벤션센터, 광교"
+  },
+  {
+   "date": "2025.05",
+   "title": "PLAS ART SHOW 2025 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.05",
+   "title": "MUTANT 순수의 기원 - DDP ART HALL, 서울"
+  },
+  {
+   "date": "2025.05",
+   "title": "4th SEOUL ART FAIR 2025 - 세택, 서울"
+  },
+  {
+   "date": "2025.05",
+   "title": "더메종 블루아트페어 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.04",
+   "title": "화랑미술제 2025 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.03",
+   "title": "Bibbidi Bobbidi Boo 2nd - 스페이스금채, 서울"
+  },
+  {
+   "date": "2025.03",
+   "title": "LAK-T Art Road Korea and Thailand - 방콕 리버시티, 태국"
+  },
+  {
+   "date": "2025.03",
+   "title": "'BAM - 금수단 연례전‘ - space c.t.o, 서울"
+  },
+  {
+   "date": "2025.02",
+   "title": "서울 리빙 디자인페어 - 코엑스, 서울"
+  },
+  {
+   "date": "2025.02",
+   "title": "2025 LA ART SHOW - 로스엔젤레스 컨벤션 센터, 미국"
+  },
+  {
+   "date": "2024.12",
+   "title": "서울아트쇼 - 코엑스, 서울"
+  },
+  {
+   "date": "2024.12",
+   "title": "홈.테이블데코페어 & 블루아트페어- 코엑스, 서울"
+  },
+  {
+   "date": "2024.12",
+   "title": "공간장식 - ljl갤러리, 서울"
+  },
+  {
+   "date": "2024.11",
+   "title": "Uranium Muranium club - 라메르갤러리, 서울"
+  },
+  {
+   "date": "2024.10",
+   "title": "아트광주2024 - 김대중컨벤션센터, 광주"
+  },
+  {
+   "date": "2024.09",
+   "title": "금속제3그룹 40주년 기념전 - 경인미술관, 서울"
+  },
+  {
+   "date": "2024.08",
+   "title": "live in art & 갤러리 탐미안 - 갤러리 space776, 서울"
+  },
+  {
+   "date": "2024.08",
+   "title": "서울한강비엔날레 - 노들갤러리, 서울"
+  },
+  {
+   "date": "2024.08",
+   "title": "UM JAE WON X LEE JUNG YEOB 초대전 - 라한호텔점, 경주"
+  },
+  {
+   "date": "2024.08",
+   "title": "bank art fair - 세택, 서울"
+  },
+  {
+   "date": "2024.07",
+   "title": "UM JAE WON X LEE JUNG YEOB 초대전 - 해운대LCT, 부산"
+  },
+  {
+   "date": "2024.06",
+   "title": "gallerise art fair in suwon 2024화랑미술제 - 수원컨벤션센터, 광교"
+  },
+  {
+   "date": "2024.05",
+   "title": "Bibbidi Bobbidi Boo - 스페이스금채, 서울"
+  },
+  {
+   "date": "2024.05",
+   "title": "서울아트페어 2024 - 세택, 서울"
+  },
+  {
+   "date": "2024.04",
+   "title": "gallerise art fair 2024화랑미술제 - 코엑스, 서울"
+  },
+  {
+   "date": "2024.03",
+   "title": "지아트 아티스트 콜라보 - 아트린뮤지움미술관, 파주"
+  },
+  {
+   "date": "2024.01",
+   "title": "wip + ing - ap갤러리, 서울"
+  },
+  {
+   "date": "2024.01",
+   "title": "art future 2024 - 그랜드 하얏트 타이페이, 대만"
+  },
+  {
+   "date": "2023.12",
+   "title": "art fair play - ddp arthall, 서울"
+  },
+  {
+   "date": "2023.10",
+   "title": "pray of peace –갤러리702, 서울"
+  },
+  {
+   "date": "2023.09",
+   "title": "문화관광부 지역특화 프로그램사업 imagine peace - 달홀문화센터, 강원도"
+  },
+  {
+   "date": "2023.08",
+   "title": "2023 formosa international art fiar - eslite hotel, 타이베이 대만"
+  },
+  {
+   "date": "2023.07",
+   "title": "금속제3그룹 38회 정기전 - 부산광역시 중구문화원, 부산"
+  },
+  {
+   "date": "2023.05",
+   "title": "조형아트서울 2023 PLAS - 코엑스, 서울"
+  },
+  {
+   "date": "2023.02",
+   "title": "아! 좋다 I like it - 슈페리어갤러리, 서울"
+  },
+  {
+   "date": "2022.12",
+   "title": "공예트렌드페어 - 코엑스, 서울"
+  },
+  {
+   "date": "2022.11",
+   "title": "2022 시그니엘 국제블루아트페어 - 시그니엘부산, 부산"
+  },
+  {
+   "date": "2022.11",
+   "title": "금속제3그룹 37회 정기전 - KCDF, 서울"
+  },
+  {
+   "date": "2022.11",
+   "title": "jhkacademy 그룹전 - 북촌한옥청, 서울"
+  },
+  {
+   "date": "2022.09",
+   "title": "A Feast of Color 그룹전 - 아트99갤러리, 서울"
+  },
+  {
+   "date": "2022.08",
+   "title": "ART JEJU 2022 - 롯데호텔, 제주"
+  },
+  {
+   "date": "2022.08",
+   "title": "IHAF 2022 - 호텔인터불고, 대구"
+  },
+  {
+   "date": "2022.07",
+   "title": "어반브레이크 - 코엑스, 서울"
+  },
+  {
+   "date": "2022.06",
+   "title": "뱅크아트페어 2022 - 인터콘티넨탈호텔, 서울"
+  },
+  {
+   "date": "2022.04",
+   "title": "디자인아트페어 2022 - 예술의전당 한가람디자인미술관, 서울"
+  },
+  {
+   "date": "2022.04",
+   "title": "Linus'Blanket 애착 - 스페이스금채, 서울"
+  },
+  {
+   "date": "2021.12",
+   "title": "금속제3그룹 36회 정기전 - KCDF, 서울"
+  },
+  {
+   "date": "2021.11",
+   "title": "공예트렌드페어 창작공방관 - 코엑스, 서울"
+  },
+  {
+   "date": "2020.07",
+   "title": "공장전 - jhkstudio, 서울"
+  }
+ ],
+ "interviews": [
+  {
+   "id": "INT-01",
+   "title": "Fantastic power x Fun | 삼성SDI 작가 인터뷰",
+   "url": "https://youtu.be/_gO0UF6UOJA?si=KgW-e5aZ90qnT9Bh"
+  }
+ ]
+}
