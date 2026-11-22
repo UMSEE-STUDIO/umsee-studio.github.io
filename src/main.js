@@ -107,11 +107,15 @@
   try { await Data.load(); }
   catch (err) { ctx.fillStyle = '#fff'; ctx.font = '8px monospace'; ctx.fillText('Load failed: ' + err.message, 8, 90); throw err; }
 
-  // Phone/browser Back = B (Esc). One history entry is kept as a guard; on the title screen Back leaves the site.
-  history.pushState({ umw: 1 }, '');
+  // Phone/browser Back = B (Esc). A guard history entry absorbs Back. Mobile Chrome skips entries added
+  // without a user gesture, so the guard is (re)added on the next touch/key/click, never at load.
+  let guarded = false;
+  const guard = () => { if (!guarded) { history.pushState({ umw: 1 }, ''); guarded = true; } };
+  ['pointerdown', 'keydown'].forEach(t => addEventListener(t, guard, true));
   addEventListener('popstate', () => {
-    if (Scenes.current === TitleScene && !UI.modal && !UI.viewer) { history.back(); return; }
-    Input.repeat('b'); history.pushState({ umw: 1 }, '');
+    guarded = false;
+    if (Scenes.current === TitleScene && !UI.modal && !UI.viewer) { history.back(); return; } // title: leave the site
+    Input.repeat('b');
   });
 
   Data.onLang(Data.lang);

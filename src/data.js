@@ -1,5 +1,5 @@
 // Data loading: dialogue script, UI strings, career, art manifest. Safe local storage.
-const LANGS = ['en', 'ko', 'ja', 'zh', 'tw', 'fr', 'es']; // zh = Simplified, tw = Traditional (Taiwan)
+const LANGS = ['ko', 'en', 'ja', 'zh', 'tw', 'fr', 'es']; // zh = Simplified, tw = Traditional (Taiwan)
 
 const Save = {
   get(k, d) { try { const v = localStorage.getItem('umw.' + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
