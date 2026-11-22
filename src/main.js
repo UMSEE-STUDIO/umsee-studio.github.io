@@ -146,6 +146,9 @@
     const showA = Hint.a && !UI.modal && !UI.viewer, showStick = Hint.stick && !UI.modal && !UI.viewer;
     if (aBtn.classList.contains('hint') !== showA) aBtn.classList.toggle('hint', showA);
     if (stickEl.classList.contains('hint') !== showStick) stickEl.classList.toggle('hint', showStick);
+    // TV open with several channels: the stick wiggles sideways (left/right = channel)
+    const showX = !!(UI.modal && UI.modal.classList.contains('tv') && !UI.modal.querySelector('iframe') && Data.career.interviews.length > 1);
+    if (stickEl.classList.contains('hint-x') !== showX) stickEl.classList.toggle('hint-x', showX);
     ctx.imageSmoothingEnabled = false;
     Scenes.draw(ctx, scale);
     UI.update(dt, scale);
