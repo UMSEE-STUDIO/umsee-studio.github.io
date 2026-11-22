@@ -4,6 +4,7 @@
   const ctx = canvas.getContext('2d');
   const ui = document.getElementById('ui');
   const pad = document.getElementById('console'), ctlEl = document.getElementById('controls');
+  const aBtn = document.querySelector('.fb.red'), stickEl = document.getElementById('stick');
   let scale = 1;
 
   // Layout. Desktop/landscape: whole 320x180 world at an integer scale.
@@ -95,6 +96,9 @@
     const dt = Math.min(0.25, (now - last) / 1000); last = now; acc += dt;
     while (acc >= STEP) { Scenes.update(STEP); acc -= STEP; }
     layout();
+    const showA = Hint.a && !UI.modal && !UI.viewer, showStick = Hint.stick && !UI.modal && !UI.viewer;
+    if (aBtn.classList.contains('hint') !== showA) aBtn.classList.toggle('hint', showA);
+    if (stickEl.classList.contains('hint') !== showStick) stickEl.classList.toggle('hint', showStick);
     ctx.imageSmoothingEnabled = false;
     Scenes.draw(ctx, scale);
     UI.update(dt, scale);

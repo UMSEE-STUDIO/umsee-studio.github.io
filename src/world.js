@@ -308,7 +308,8 @@ function makeRoom(def) {
       document.getElementById('screen').style.cursor = hw ? 'zoom-in' : h ? 'pointer' : '';
       const wa = !this.near && !p.moving && this.wallAbove();
       const show = h || this.near;
-      UI.setLabel(hw || wa ? `${Data.t((hw || wa).art.folder)} · ${Data.t('viewLarge')}` : show ? (show.desc ? Data.t(show.desc) : show.label?.()) + (show === this.near ? '  [A]' : '') : '');
+      UI.setLabel(hw || wa ? `${Data.t((hw || wa).art.folder)} · ${Data.t('viewLarge')}` : show ? (show.desc ? Data.t(show.desc) : show.label?.()) : '');
+      Hint.a = !!(this.near || wa); Hint.stick = !this.near && !wa && !p.moving && this.idle > 4;
       // idle hints
       this.idle += dt;
       if (!this.hinted && this.idle > 5) { this.hinted = true; this.say(matchMedia('(pointer: coarse)').matches ? 'HINT_MOVE_TOUCH' : 'HINT_MOVE'); }

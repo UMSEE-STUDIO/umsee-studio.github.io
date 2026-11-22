@@ -6,7 +6,7 @@ body { display: flex; flex-direction: column; align-items: center; justify-conte
 #ui { position: absolute; inset: 0; pointer-events: none; overflow: hidden; --s: 2; font-size: calc(5px * var(--s) + 4px); line-height: 1.35; }
 
 /* speech bubble */
-.bubble { z-index: 4; position: absolute; transform: translate(-50%, -100%); width: max-content; max-width: 60%; background: #f4f1ff; color: #0b0f2a; padding: .35em .6em; border: 2px solid #0b0f2a; box-shadow: 0 0 0 2px #FB128E; display: none; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bubble { z-index: 6; position: absolute; transform: translate(-50%, -100%); width: max-content; max-width: 60%; background: #f4f1ff; color: #0b0f2a; padding: .35em .6em; border: 2px solid #0b0f2a; box-shadow: 0 0 0 2px #FB128E; display: none; white-space: pre-wrap; overflow-wrap: anywhere; }
 .bubble.on { display: block; }
 .bubble::after { content: ""; position: absolute; left: calc(50% + var(--tail, 0px)); bottom: -8px; border: 4px solid transparent; border-top-color: #0b0f2a; transform: translateX(-50%); }
 
@@ -130,3 +130,10 @@ body.portrait #console { padding: 10px 4px 14px; gap: 8px; }
 .logo { position: absolute; left: 0; right: 0; top: 19%; text-align: center; pointer-events: none; line-height: 1.1; }
 .logo .l1 { color: #FB128E; font-size: calc(19px * var(--s)); }
 .logo .l2 { color: #CEBEF5; font-size: calc(7px * var(--s)); margin-top: .5em; letter-spacing: .15em; }
+
+/* console prompts instead of "[A]" text */
+.fb.red.hint { animation: apulse 1s ease-in-out infinite; }
+@keyframes apulse { 0%, 100% { box-shadow: 0 5px 0 #0004, 0 0 0 0 #FB128E99; } 50% { box-shadow: 0 5px 0 #0004, 0 0 0 9px #FB128E00; filter: brightness(1.25); } }
+#stick.hint .knob { animation: nudge 1.6s ease-in-out infinite; }
+@keyframes nudge { 0%, 60%, 100% { translate: 0 0; } 70% { translate: 0 -7px; } 80% { translate: 0 0; } 90% { translate: 0 -7px; } }
+body.portrait .bubble { max-width: 82%; }

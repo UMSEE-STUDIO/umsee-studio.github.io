@@ -9,6 +9,8 @@ const rect = (ctx, c, x, y, w, h) => { ctx.fillStyle = c; ctx.fillRect(x, y, w, 
 // Visible window into the 320x180 world. Desktop: whole world. Portrait phones in rooms: a square
 // window that follows the pigeon at 2x (main.js layout()).
 const View = { x: 0, y: 0, w: W, h: H, scale: 1 };
+// Console prompts: the A button pulses when something can be opened, the joystick wiggles when it is time to walk.
+const Hint = { a: false, stick: false };
 
 const Scenes = (() => {
   let current = null, next = null, nextArg, wipe = 0;
@@ -18,7 +20,7 @@ const Scenes = (() => {
   function update(dt) {
     if (wipe > 0) {
       wipe += dt * WIPE_SPEED;
-      if (wipe >= 1 && next) { UI.close(true); UI.hush(); UI.setLabel(''); current.leave?.(); current = next; next = null; current.enter?.(nextArg); }
+      if (wipe >= 1 && next) { UI.close(true); UI.hush(); UI.setLabel(''); Hint.a = Hint.stick = false; current.leave?.(); current = next; next = null; current.enter?.(nextArg); }
       if (wipe >= 2) wipe = 0;
     } else if (UI.viewer) UI.updateViewer();
     else if (UI.modal) UI.updateModal();
@@ -119,6 +121,7 @@ const TitleScene = {
     if (dl) { Data.setLang(LANGS[(LANGS.indexOf(Data.lang) + dl + LANGS.length) % LANGS.length], true); this.refresh(); Audio8.sfx('click'); }
     const tap = Input.takeTap();
     
+    Hint.a = true;
     if (Input.consume('a') || tap) Scenes.go(HubScene);
   },
   draw(ctx) {
