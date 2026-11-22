@@ -18,7 +18,7 @@ const Panels = (() => {
       <button data-play>${t('play')}</button> ${ext(url, Data.t('openYoutube'))}</div>`;
   }
   function wireVideo(panel) {
-    panel.addEventListener('click', ev => { if (ev.target.closest('[data-play]')) play(panel); });
+    panel.addEventListener('click', ev => { if (ev.target.closest('[data-play], .video .card')) play(panel); }); // the TV picture plays too
   }
   function play(panel) {
     const box = panel.querySelector('.video'), b = panel.querySelector('[data-play]'), id = box?.dataset.yt;

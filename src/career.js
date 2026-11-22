@@ -1,6 +1,6 @@
 // M3 career room: CRT credits crawl, with a plain text view. Text is shown exactly as in data/career.json.
 const CareerScene = (() => {
-  let t = 0, opened = false;
+  let t = 0, opened = false, resumeAt = 0, rollEl = null, openedAt = 0, startAt = 0; // seconds into the crawl
   const e = s => UI.esc(s);
 
   function section(key, items, fmt) {
@@ -28,20 +28,26 @@ const CareerScene = (() => {
       section('artistNote', c.artistNote, para);
   }
 
+  // remember the crawl position (seconds) when the room is left
+  function remember() { if (openedAt) { resumeAt = startAt + (performance.now() - openedAt) / 1000; openedAt = 0; } }
+
   function open() {
     opened = true;
     const p = UI.open(`<div class="crawl"><div class="roll">${content()}</div></div><div class="list">${content()}</div>
       <p class="hint"><button data-mode>${e(Data.t('textView'))} [A]</button></p>`, {
       cls: 'crt',
-      onClose: () => Scenes.go(HubScene, 'career'),
+      onClose: () => { remember(); Scenes.go(HubScene, 'career'); },
       onKey: () => { if (!document.activeElement?.matches('a') && Input.consume('a')) { toggle(p); return true; } return false; },
     });
     const roll = p.querySelector('.roll');
     roll.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
     p.querySelector('[data-mode]').focus({ preventScroll: true });
     roll.style.setProperty('--dist', -(roll.scrollHeight + p.querySelector('.crawl').clientHeight * 1.6) + 'px');
-    const dur = Math.max(27, roll.scrollHeight / 27); // 1.5x faster than the first preview
+    const dur = Math.max(20, roll.scrollHeight / 36); // ~2x the first preview speed
     roll.style.animationDuration = dur + 's';
+    startAt = resumeAt % dur; openedAt = performance.now();
+    roll.style.animationDelay = -startAt + 's'; // later visits continue where the crawl was left
+    rollEl = roll;
     p.addEventListener('click', ev => { if (ev.target.closest('[data-mode]')) toggle(p); });
   }
   function toggle(p) {
@@ -52,6 +58,7 @@ const CareerScene = (() => {
 
   return {
     camera: true, camTarget: () => ({ x: W / 2, y: H / 2 }),
+    leave() { remember(); },
     enter() {
       t = 0; opened = false;
       Audio8.setTrack('space');
@@ -60,7 +67,7 @@ const CareerScene = (() => {
     },
     update(dt) {
       t += dt;
-      if (Input.consume('b')) { Scenes.go(HubScene, 'career'); return; }
+      if (Input.consume('b')) { remember(); Scenes.go(HubScene, 'career'); return; }
       if (!opened && (t > 2.2 || Input.consume('a') || Input.takeTap())) open();
     },
     draw(ctx) {
