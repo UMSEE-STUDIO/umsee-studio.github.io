@@ -1,5 +1,5 @@
 // Data loading: dialogue script, UI strings, career, art manifest. Safe local storage.
-const LANGS = ['en', 'ko', 'ja', 'zh', 'fr', 'es'];
+const LANGS = ['en', 'ko', 'ja', 'zh', 'tw', 'fr', 'es']; // zh = Simplified, tw = Traditional (Taiwan)
 
 const Save = {
   get(k, d) { try { const v = localStorage.getItem('umw.' + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
@@ -23,7 +23,7 @@ const Data = {
     this.setLang(LANGS.includes(picked) ? picked : detectLang());
   },
 
-  setLang(l, pick) { this.lang = l; if (pick) Save.set('langPick', l); document.documentElement.lang = l; this.onLang?.(l); },
+  setLang(l, pick) { this.lang = l; if (pick) Save.set('langPick', l); document.documentElement.lang = l === 'tw' ? 'zh-Hant-TW' : l === 'zh' ? 'zh-Hans' : l; this.onLang?.(l); },
   t(key) { return this.strings[this.lang]?.[key] ?? this.strings.en?.[key] ?? key; },
 
   // Lines for a dialogue ID in the current language (one random group).
@@ -41,12 +41,17 @@ function detectLang() {
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch { /* old browsers */ }
   const TZ = [
     [/^Asia\/Seoul$/, 'ko'], [/^Asia\/Tokyo$/, 'ja'],
-    [/^Asia\/(Shanghai|Chongqing|Harbin|Urumqi|Hong_Kong|Macau|Taipei)$/, 'zh'],
+    [/^Asia\/(Taipei|Hong_Kong|Macau)$/, 'tw'],
+    [/^Asia\/(Shanghai|Chongqing|Harbin|Urumqi)$/, 'zh'],
     [/^(Europe\/(Paris|Monaco)|Indian\/Reunion|America\/(Martinique|Guadeloupe|Cayenne)|Pacific\/(Tahiti|Noumea))$/, 'fr'],
     [/^(Europe\/Madrid|Atlantic\/Canary|Africa\/Ceuta|America\/(Mexico_City|Cancun|Monterrey|Merida|Chihuahua|Tijuana|Bogota|Lima|Santiago|Caracas|Montevideo|Asuncion|La_Paz|Guayaquil|Guatemala|El_Salvador|Tegucigalpa|Managua|Costa_Rica|Panama|Havana|Santo_Domingo|Puerto_Rico|Argentina\/.+))$/, 'es'],
   ];
   for (const [re, l] of TZ) if (re.test(tz)) return l;
-  for (const n of navigator.languages || [navigator.language || '']) { const l = String(n).slice(0, 2).toLowerCase(); if (LANGS.includes(l)) return l; }
+  for (const n of navigator.languages || [navigator.language || '']) {
+    const s = String(n).toLowerCase();
+    if (/^zh-(tw|hk|mo|hant)/.test(s)) return 'tw';
+    const l = s.slice(0, 2); if (LANGS.includes(l)) return l;
+  }
   return 'en';
 }
 

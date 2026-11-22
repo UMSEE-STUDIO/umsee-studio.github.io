@@ -16,6 +16,7 @@ const GalleryScene = (() => {
   const VP = { x: 160, y: 74 };
   let room = 0, pos = 0, target = 0, arts = [], layer = null, imgs = new Map();
   const walker = { x: 152, y: 146, face: 'up', moving: false, t: 0 }; // the pigeon, seen from behind
+  let holdT = 0; // hold ▲/▼ (stick, keys) to keep walking: first repeat after 0.35 s, then every 0.22 s
 
   function slots() { return Math.ceil(arts.length / 2); }
   function setRoom(i) {
@@ -75,6 +76,12 @@ const GalleryScene = (() => {
     update(dt) {
       tickWheelHint(dt, 'HINT_WHEEL', () => ({ x: walker.x + 8, y: walker.y - 14 }));
       pos += Math.sign(target - pos) * Math.min(Math.abs(target - pos), dt * 4);
+      // auto-repeat while ▲/▼ is held (joystick on phones): one step per tick, never left/right
+      const held = Input.dir();
+      if (held === 'up' || held === 'down') {
+        if (Input.consume('dir:' + held)) { holdT = -0.35; Input.repeat('dir:' + held); } // fresh press: step now, then wait
+        else if ((holdT += dt) >= 0) { holdT = -0.22; Input.repeat('dir:' + held); }
+      } else holdT = 0;
       const tap = Input.takeTap();
       if (tap) { // images catch their own clicks; canvas taps: edges = artwork, centre = walk
         if (tap.x < 80) { walker.face = 'left'; open(target * 2); } else if (tap.x > 240) { walker.face = 'right'; open(target * 2 + 1); }

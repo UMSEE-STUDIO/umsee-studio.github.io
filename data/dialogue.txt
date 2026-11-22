@@ -20,6 +20,7 @@ ko: 으음... 여기가 작업실인가.
 en: Hmm... so this is the studio.
 ja: うーん…ここがアトリエかな。
 zh: 嗯……这里就是工作室吗？
+tw: 嗯……這裡就是工作室嗎？
 fr: Hmm... c'est donc ça, l'atelier.
 es: Mmm... así que este es el estudio.
 
@@ -29,6 +30,7 @@ ko: 슬슬 걸어볼까.
 en: Maybe I'll take a little walk.
 ja: そろそろ歩いてみようかな。
 zh: 慢慢走走看吧。
+tw: 慢慢走走看吧。
 fr: Et si je faisais quelques pas.
 es: Quizá dé un paseíto.
 
@@ -38,6 +40,7 @@ ko: 바닥을 콕 찍으면 갈 수 있을 것 같다.
 en: A little tap on the floor might take me there.
 ja: 床をちょんと押せば行けそうだ。
 zh: 轻点地板，好像就能过去。
+tw: 輕點地板，好像就能過去。
 fr: En touchant le sol du bout du doigt, j'y arriverais peut-être.
 es: Un toquecito en el suelo y quizá llegue.
 
@@ -47,6 +50,7 @@ ko: 뭔가 있다. 만져볼까?
 en: Something's here. Should I touch it?
 ja: 何かある。触ってみようか。
 zh: 有什么东西。摸摸看？
+tw: 有什麼東西。摸摸看？
 fr: Il y a quelque chose. J'y touche ?
 es: Aquí hay algo. ¿Lo toco?
 
@@ -56,6 +60,7 @@ ko: 구구...
 en: Coo coo...
 ja: クルック…
 zh: 咕咕……
+tw: 咕咕……
 fr: Rou rou...
 es: Cu cu...
 ---
@@ -63,6 +68,7 @@ ko: 창밖이 좋네.
 en: Nice view out the window.
 ja: 窓の外がいいな。
 zh: 窗外真好。
+tw: 窗外真好。
 fr: Joli, dehors.
 es: Qué bonito se ve afuera.
 ---
@@ -70,6 +76,7 @@ ko: 어디 갈 데 없나.
 en: I wonder if there's somewhere to go.
 ja: どこか行くところないかな。
 zh: 有没有地方可去呢？
+tw: 有沒有地方可去呢？
 fr: Un endroit où aller, peut-être.
 es: ¿Habrá algún sitio adonde ir?
 
@@ -81,6 +88,7 @@ ko: 왠지 그림이 모여 있는 방 같다. 갤러리인가?
 en: Feels like a room full of paintings. A gallery?
 ja: なんだか絵が集まっている部屋みたい。ギャラリーかな？
 zh: 好像是挂满画的房间。是画廊吗？
+tw: 好像是掛滿畫的房間。是畫廊嗎？
 fr: On dirait une pièce pleine de tableaux. Une galerie ?
 es: Parece un cuarto lleno de cuadros. ¿Una galería?
 
@@ -90,6 +98,7 @@ ko: 오래된 TV다. 켜져 있네. 뭔가 흘러가는데.
 en: An old TV. It's on. Something's scrolling by.
 ja: 古いテレビだ。ついてる。何か流れてる。
 zh: 一台旧电视。开着呢。有什么在滚动。
+tw: 一臺舊電視。開著呢。有什麼在滾動。
 fr: Une vieille télé. Allumée. Quelque chose défile.
 es: Una tele vieja. Está encendida. Algo va pasando.
 
@@ -99,6 +108,7 @@ ko: 띵동 띵동. 누군가 찾아 온 것 같다!
 en: Ding-dong, ding-dong. Someone's come by!
 ja: ピンポーン。誰か来たみたい！
 zh: 叮咚叮咚。好像有人来了！
+tw: 叮咚叮咚。好像有人來了！
 fr: Ding-dong. Quelqu'un est venu !
 es: Din-don, din-don. ¡Parece que vino alguien!
 
@@ -108,6 +118,7 @@ ko: 소파 앞 TV 옆에 리모컨이 놓여 있다.
 en: A remote sits by the TV in front of the sofa.
 ja: ソファの前のテレビの横にリモコンがある。
 zh: 沙发前的电视旁放着遥控器。
+tw: 沙發前的電視旁放著遙控器。
 fr: Une télécommande traîne près de la télé, devant le canapé.
 es: Hay un control remoto junto a la tele, frente al sofá.
 
@@ -117,6 +128,7 @@ ko: 우편함이다. 편지가 들어 있으려나.
 en: A mailbox. Any letters inside?
 ja: 郵便受けだ。手紙入ってるかな。
 zh: 是信箱。里面有信吗？
+tw: 是信箱。裡面有信嗎？
 fr: Une boîte aux lettres. Du courrier, peut-être.
 es: Un buzón. ¿Tendrá cartas?
 
@@ -126,6 +138,7 @@ ko: 포스터 속 사람이 이 방 주인인 것 같다.
 en: The person on the poster must be the one who lives here.
 ja: ポスターの人がこの部屋の主みたい。
 zh: 海报里的人好像是这里的主人。
+tw: 海報裡的人好像是這裡的主人。
 fr: La personne sur l'affiche doit vivre ici.
 es: La persona del póster debe de ser quien vive aquí.
 
@@ -137,6 +150,7 @@ ko: 벽마다 그림이 가득하다. 천천히 둘러봐야지.
 en: Paintings on every wall. I'll take my time.
 ja: 壁じゅう絵でいっぱい。ゆっくり見ようっと。
 zh: 每面墙都挂满了画。慢慢看吧。
+tw: 每面牆都掛滿了畫。慢慢看吧。
 fr: Des tableaux sur chaque mur. Prenons notre temps.
 es: Cuadros en cada pared. Iré despacio.
 
@@ -146,6 +160,7 @@ ko: 불이 꺼졌다. TV만 환하다.
 en: The lights went out. Only the TV glows.
 ja: 明かりが消えた。テレビだけが明るい。
 zh: 灯灭了。只有电视亮着。
+tw: 燈滅了。只有電視亮著。
 fr: La lumière s'éteint. Seule la télé brille.
 es: Se apagó la luz. Solo brilla la tele.
 
@@ -155,6 +170,7 @@ ko: 누가 앉아 있던 자리 같다. 아직 따뜻하다.
 en: Someone was sitting here. Still warm.
 ja: 誰か座ってたみたい。まだ温かい。
 zh: 好像有人坐过。还是暖的。
+tw: 好像有人坐過。還是暖的。
 fr: Quelqu'un était assis là. C'est encore tiède.
 es: Alguien estuvo sentado aquí. Aún está tibio.
 
@@ -164,6 +180,7 @@ ko: 여기서 누군가 이야기를 했나 보다.
 en: Someone must have talked here.
 ja: ここで誰かが話していたらしい。
 zh: 好像有人在这里聊过天。
+tw: 好像有人在這裡聊過天。
 fr: Quelqu'un a dû parler ici.
 es: Alguien debió de hablar aquí.
 
@@ -173,6 +190,7 @@ ko: 책상 위가 조용하다. 편지 쓰기 좋은 곳이다.
 en: A quiet desk. Nice spot for writing letters.
 ja: 机の上が静かだ。手紙を書くのにいい場所。
 zh: 桌上很安静。适合写信。
+tw: 桌上很安靜。適合寫信。
 fr: Un bureau tranquille. Parfait pour écrire.
 es: Un escritorio tranquilo. Buen sitio para escribir.
 
@@ -184,6 +202,7 @@ ko: 틱.
 en: Click.
 ja: カチッ。
 zh: 咔。
+tw: 咔。
 fr: Clic.
 es: Clic.
 
@@ -193,6 +212,7 @@ ko: 처음 채널로 돌아왔다.
 en: Back to the first channel.
 ja: 最初のチャンネルに戻った。
 zh: 回到第一个频道了。
+tw: 回到第一個頻道了。
 fr: Retour à la première chaîne.
 es: De vuelta al primer canal.
 
@@ -202,6 +222,7 @@ ko: 누구에게 보낼까.
 en: Who should I write to?
 ja: 誰に送ろうかな。
 zh: 寄给谁呢？
+tw: 寄給誰呢？
 fr: À qui écrire.
 es: ¿A quién le escribo?
 
@@ -211,6 +232,7 @@ ko: 이쯤에서 나갈까.
 en: Maybe I'll head out.
 ja: そろそろ出ようか。
 zh: 差不多该出去了。
+tw: 差不多該出去了。
 fr: Je sors, peut-être.
 es: Quizá ya salga.
 
@@ -220,6 +242,7 @@ ko: 이 작업실, 생각보다 넓다.
 en: This studio is bigger than I thought.
 ja: このアトリエ、思ったより広い。
 zh: 这个工作室比想象的大。
+tw: 這個工作室比想象的大。
 fr: Cet atelier est plus grand que je pensais.
 es: Este estudio es más grande de lo que creía.
 
@@ -231,6 +254,7 @@ ko: 그냥 가기엔 좀 아쉬운데…
 en: Seems a shame to leave already…
 ja: このまま帰るのはちょっと惜しいな…
 zh: 就这么走有点可惜……
+tw: 就這麼走有點可惜……
 fr: Partir maintenant, c'est un peu dommage…
 es: Irme ya da un poco de pena…
 ---
@@ -238,6 +262,7 @@ ko: 편지 한 통쯤은 써 볼까…
 en: Maybe just one letter…
 ja: 手紙一通くらい書いてみようかな…
 zh: 要不写一封信吧……
+tw: 要不寫一封信吧……
 fr: Juste une petite lettre, peut-être…
 es: ¿Y si escribo una cartita…?
 ---
@@ -245,6 +270,7 @@ ko: 조금만 더 있다 갈까.
 en: Maybe I'll stay a little longer.
 ja: もう少しだけいようかな。
 zh: 再待一会儿吧。
+tw: 再待一會兒吧。
 fr: Je reste encore un peu.
 es: Me quedo un ratito más.
 
@@ -254,6 +280,7 @@ ko: 먼저 연락해 볼까?
 en: Should I reach out first?
 ja: 先に連絡してみようかな？
 zh: 要不要先联系看看？
+tw: 要不要先聯絡看看？
 fr: Et si j'écrivais en premier ?
 es: ¿Y si escribo yo primero?
 ---
@@ -261,6 +288,7 @@ ko: 내 연락을 기다리고 있을까?
 en: Are they waiting to hear from me?
 ja: 私の連絡を待ってるかな？
 zh: 会不会在等我的消息？
+tw: 會不會在等我的訊息？
 fr: Quelqu'un attend-il de mes nouvelles ?
 es: ¿Estarán esperando mi mensaje?
 ---
@@ -268,6 +296,7 @@ ko: 어떤 사람일까?
 en: I wonder what they're like.
 ja: どんな人なんだろう？
 zh: 会是什么样的人呢？
+tw: 會是什麼樣的人呢？
 fr: Je me demande quel genre de personne c'est.
 es: ¿Cómo será esa persona?
 
@@ -277,6 +306,7 @@ ko: 전화를 걸어 볼까?
 en: Should I make a call?
 ja: 電話をかけてみようかな？
 zh: 打个电话试试？
+tw: 打個電話試試？
 fr: Je passe un coup de fil ?
 es: ¿Hago una llamada?
 
@@ -286,6 +316,7 @@ ko: 따르릉… 따르릉…!
 en: Ring… ring…!
 ja: ジリリリン…！
 zh: 叮铃铃……！
+tw: 叮鈴鈴……！
 fr: Dring… dring… !
 es: ¡Riiing… riiing…!
 ---
@@ -293,6 +324,7 @@ ko: 찌링찌링! 누구지?
 en: Brrring! Who could it be?
 ja: チリンチリン！誰だろう？
 zh: 铃铃！是谁呢？
+tw: 鈴鈴！是誰呢？
 fr: Drriing ! Qui ça peut être ?
 es: ¡Rin rin! ¿Quién será?
 
@@ -304,6 +336,7 @@ ko: 휠을 굴리면 문을 고를 수 있을 것 같다.
 en: A roll of the wheel might pick a door.
 ja: ホイールを転がせば、ドアを選べそうだ。
 zh: 滚动滚轮，好像就能选门。
+tw: 滾動滾輪，好像就能選門。
 fr: Un tour de molette, et je choisis une porte.
 es: Con la rueda quizá pueda elegir puerta.
 
@@ -313,5 +346,6 @@ ko: 휠을 굴리면 천천히 걸어갈 수 있겠다.
 en: Rolling the wheel, I could stroll along.
 ja: ホイールを転がせば、ゆっくり歩けそう。
 zh: 滚动滚轮，就能慢慢往前走吧。
+tw: 滾動滾輪，就能慢慢往前走吧。
 fr: En roulant la molette, je pourrais flâner.
 es: Girando la rueda podría pasear despacio.

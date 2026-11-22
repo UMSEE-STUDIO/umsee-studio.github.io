@@ -6,6 +6,9 @@ const COL = {
   wood: '#8a5a3c', woodDark: '#5e3b27', white: '#f4f1ff', gray: '#9a9cb8', screen: '#7fe0ff',
 };
 const rect = (ctx, c, x, y, w, h) => { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); };
+// Visible window into the 320x180 world. Desktop: whole world. Portrait phones in rooms: a square
+// window that follows the pigeon at 2x (main.js layout()).
+const View = { x: 0, y: 0, w: W, h: H, scale: 1 };
 
 const Scenes = (() => {
   let current = null, next = null, nextArg, wipe = 0;
@@ -23,12 +26,16 @@ const Scenes = (() => {
     Input.endFrame();
   }
   function draw(ctx, scale) {
+    const cw = ctx.canvas.width, ch = ctx.canvas.height;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); rect(ctx, COL.navy, 0, 0, cw, ch);
+    ctx.translate(-View.x, -View.y);
     current.draw(ctx, scale);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     if (wipe > 0) {
       const p = wipe < 1 ? wipe : 2 - wipe;
       ctx.fillStyle = COL.black;
-      for (let x = 0; x < W; x += 8) {
-        const h = Math.ceil(Math.min(1, Math.max(0, p * 1.6 - (x / W) * 0.6)) * H / 8) * 8;
+      for (let x = 0; x < cw; x += 8) {
+        const h = Math.ceil(Math.min(1, Math.max(0, p * 1.6 - (x / cw) * 0.6)) * ch / 8) * 8;
         ctx.fillRect(x, 0, 8, h);
       }
     }
@@ -97,7 +104,14 @@ function stepActor(p, grid, dt, wantDir) {
 // ---- M0 title ----
 const TitleScene = {
   t: 0,
-  enter() { this.t = 0; this.p = Pigeon.make(-2, 7, 'right'); this.p.moving = true; this.refresh(); },
+  enter() {
+    this.t = 0; this.p = Pigeon.make(-2, 7, 'right'); this.p.moving = true; this.refresh();
+    // logo as HTML text (web font) so it stays sharp at any scale, like the speech bubbles
+    this.logo = document.createElement('div'); this.logo.className = 'logo';
+    this.logo.innerHTML = '<div class="l1">UMMM... SEE?</div><div class="l2">PIXEL ARCADE</div>';
+    document.getElementById('ui').appendChild(this.logo);
+  },
+  leave() { this.logo?.remove(); this.logo = null; },
   refresh() { UI.setLabel(`${Data.t('press')}\n${Data.t('langHint')}: ${Data.t('langName')}`, true); },
   update(dt) {
     this.t += dt; this.p.t += dt; this.p.x += dt * 24; if (this.p.x > W + 16) this.p.x = -32;
@@ -110,10 +124,7 @@ const TitleScene = {
   draw(ctx) {
     rect(ctx, COL.navy, 0, 0, W, H);
     for (let i = 0; i < 40; i++) rect(ctx, i % 3 ? COL.lilac : COL.yellow, (i * 73 + Math.floor(this.t * 4) * (i % 2)) % W, (i * 37) % 100, 1, 1);
-    ctx.font = '20px Galmuri11, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-    rect(ctx, COL.pink, 70, 30, 180, 2);
-    ctx.fillStyle = COL.pink; ctx.fillText('UMMM... SEE?', W / 2, 40);
-    ctx.font = '8px Galmuri11, monospace'; ctx.fillStyle = COL.lilac; ctx.fillText('PIXEL ARCADE', W / 2, 64);
+    rect(ctx, COL.pink, 70, 30, 180, 2); // the logo text itself is HTML (enter())
     rect(ctx, COL.navyGray, 0, 128, W, 2);
     Pigeon.draw(ctx, this.p);
   },

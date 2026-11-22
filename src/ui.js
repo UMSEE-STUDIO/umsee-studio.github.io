@@ -106,7 +106,7 @@ const UI = (() => {
       timer -= dt; if (timer <= 0) showNext();
       if (anchor) {
         const a = typeof anchor === 'function' ? anchor() : anchor;
-        bubble.style.left = a.x * scale + 'px'; bubble.style.top = a.y * scale + 'px';
+        bubble.style.left = (a.x - View.x) * scale + 'px'; bubble.style.top = (a.y - View.y) * scale + 'px';
       }
     }
   }

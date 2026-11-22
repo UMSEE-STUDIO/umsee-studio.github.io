@@ -236,6 +236,7 @@ const Draw = {
 const saidThisVisit = new Set(); // discovery lines already spoken since the page was opened
 function makeRoom(def) {
   return {
+    camera: true, // portrait phones: square window following the pigeon
     def, p: null, grid: null, near: null, idle: 0, hinted: false, exitSaid: false, time: 0, far: 0, lastHes: -9, ringT: 0, ringing: 0,
     enter(arg) {
       this.grid = Array.from({ length: ROWS }, (_, y) => Array.from({ length: COLS }, (_, x) => (x === 0 || y <= 2 || x === COLS - 1 || y === ROWS - 1) ? 1 : 0));
@@ -461,7 +462,7 @@ const ContactScene = makeRoom({
     { id: 'phone', x: 17, y: 3, w: 1, h: 2, near: 'PHONE_NEAR', label: () => Data.t('contact'),
       act: () => { Audio8.sfx('click'); Panels.instagram(); }, draw: (c, X, Y, w, h, r) => Draw.payphone(c, X, Y, r.ringing > 0) },
     deco('plant', 2, 3, 1, 1, (c, X, Y) => Draw.plant(c, X, Y)),
-    deco('chair', 8, 7, 1, 1, (c, X, Y) => Draw.chair(c, X, Y - 2, true)),
+    { id: 'chair', x: 8, y: 7, w: 1, h: 1, solid: false, draw: (c, X, Y) => Draw.chair(c, X, Y - 2, true) }, // walkable
     exitDoor('contact'),
   ],
   wall: 'contact',

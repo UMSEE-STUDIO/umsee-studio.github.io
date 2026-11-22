@@ -117,3 +117,16 @@ body { display: flex; flex-direction: column; align-items: center; justify-conte
 .label.bottom { top: auto; bottom: 8%; }
 .gal .plate { position: absolute; transform: translate(-50%, -50%); pointer-events: auto; cursor: pointer; white-space: nowrap; background: #CEBEF5; color: #0b0f2a; padding: .25em .6em; border: 2px solid #0b0f2a; }
 .gal .plate.on { background: #f4f1ff; box-shadow: 0 0 0 2px #FB128E; }
+
+/* portrait phones: slimmer device chrome so the screen can be as large as possible */
+body.portrait #device { padding: 8px 8px 0; border-radius: 16px; }
+body.portrait #bezel { padding: 4px; border-radius: 8px; }
+body.portrait #langs { padding: 0 2px 6px; gap: 4px; }
+body.portrait #langs svg { width: 26px; height: 17px; }
+body.portrait #controls { font-size: 11px; }
+body.portrait #console { padding: 10px 4px 14px; gap: 8px; }
+
+/* title logo (HTML text over the canvas) */
+.logo { position: absolute; left: 0; right: 0; top: 19%; text-align: center; pointer-events: none; line-height: 1.1; }
+.logo .l1 { color: #FB128E; font-size: calc(19px * var(--s)); }
+.logo .l2 { color: #CEBEF5; font-size: calc(7px * var(--s)); margin-top: .5em; letter-spacing: .15em; }

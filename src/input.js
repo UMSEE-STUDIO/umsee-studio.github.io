@@ -81,10 +81,11 @@ const Input = (() => {
   // Current direction: held, or tapped this frame (a quick tap still moves one tile).
   function dir() { return ['up', 'down', 'left', 'right'].find(d => held[d] || pressed.has('dir:' + d)) || null; }
   function consume(btn) { return pressed.delete(btn); }
+  function repeat(btn) { pressed.add(btn); } // synthetic press (hold-to-repeat)
   function takeTap() { const t = tap; tap = null; return t; }
   function endFrame() { pressed.clear(); tap = null; }
 
   function onAny(fn) { anyInput = fn; }
   function wheelWhen(fn) { wheelOn = fn; }
-  return { attach, dir, consume, takeTap, endFrame, onAny, wheelWhen, get hover() { return hover; } };
+  return { attach, dir, consume, takeTap, endFrame, onAny, wheelWhen, repeat, get hover() { return hover; } };
 })();
