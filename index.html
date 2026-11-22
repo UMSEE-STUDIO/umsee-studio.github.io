@@ -3,14 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<title>UMSEE Pixel Arcade</title>
-<link rel="icon" href="data:,">
+<title>UMMM… 👀 SEE? 🌀 Paintings + things that pop out 📍 Seoul, Korea</title>
+<meta name="description" content="Pop culture, color & a little bit of chaos. Walk a pixel pigeon through the studio of artist UMSEE (Seoul): gallery, CV, collaborations, interviews.">
+<!-- share preview (Open Graph / Twitter). deploy.py adds ?v=<version> to the image so apps fetch the new card -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UMSEE Pixel Arcade">
+<meta property="og:title" content="UMMM… 👀 SEE? 🌀 Paintings + things that pop out 📍 Seoul, Korea">
+<meta property="og:description" content="Pop culture, color & a little bit of chaos. Walk a pixel pigeon through the studio of artist UMSEE (Seoul): gallery, CV, collaborations, interviews.">
+<meta property="og:url" content="https://umsee-studio.github.io/">
+<meta property="og:image" content="https://umsee-studio.github.io/assets/og.png?v=5d7b531">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A pixel pigeon in the UMSEE studio">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UMMM… 👀 SEE? 🌀 Paintings + things that pop out 📍 Seoul, Korea">
+<meta name="twitter:description" content="Pop culture, color & a little bit of chaos. Walk a pixel pigeon through the studio of artist UMSEE (Seoul): gallery, CV, collaborations, interviews.">
+<meta name="twitter:image" content="https://umsee-studio.github.io/assets/og.png?v=5d7b531">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0f2a">
 <link rel="preload" href="assets/fonts/Galmuri11.woff2" as="font" type="font/woff2" crossorigin>
 <meta http-equiv="Cache-Control" content="no-cache">
 </head>
 <body>
 <div id="device">
-  <div id="langs" role="group" aria-label="language"></div>
+  <div id="topbar">
+    <button id="share" aria-label="share"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 10v4h3l6 4V6L6 10H3z" fill="#e01e37"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="#e01e37" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <div id="langs" role="group" aria-label="language"></div>
+  </div>
   <div id="bezel">
     <div id="wrap">
       <canvas id="screen" width="320" height="180"></canvas>

@@ -48,7 +48,7 @@
  "secretCollab": "在做什麼呢～？",
  "contact": "聯絡方式",
  "tvOff": "關電視",
- "descGallery": "畫廊 — 壓克力、迷你壓克力、素描",
+ "descGallery": "UMSEE 畫廊",
  "descCareer": "履歷 — 用老電視看展覽與合作",
  "descMeeting": "會議室 — 合作",
  "descInterview": "訪談室 — 電視看影片",
@@ -64,5 +64,7 @@
  "ctlTv": "◀▶ 頻道  ·  A = Enter: 播放  ·  B = Esc: 關電視",
  "fullView": "檢視大圖 [A]",
  "ctlLobby": "◀▶ / 滾輪: 選門  ·  A = Enter / 點選: 進入  ·  B = Esc: 回工作室",
- "viewLarge": "點選 / A: 檢視大圖"
+ "viewLarge": "點選 / A: 檢視大圖",
+ "shareText": "來逛逛像素工作室吧。",
+ "linkCopied": "連結已複製。傳給誰呢？"
 }

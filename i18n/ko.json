@@ -48,7 +48,7 @@
  "secretCollab": "뭘 하고 있을까~?",
  "contact": "연락처",
  "tvOff": "TV 끄기",
- "descGallery": "갤러리 — 아크릴, 아크릴 미니, 드로잉",
+ "descGallery": "UMSEE 갤러리",
  "descCareer": "경력 — 오래된 TV로 보는 전시와 협업",
  "descMeeting": "미팅룸 — 협업 이야기",
  "descInterview": "인터뷰 방 — TV로 보는 영상",
@@ -64,5 +64,7 @@
  "ctlTv": "◀▶ 채널  ·  A = Enter: 재생  ·  B = Esc: TV 끄기",
  "fullView": "크게 보기 [A]",
  "ctlLobby": "◀▶ / 휠: 문 고르기  ·  A = Enter / 클릭: 들어가기  ·  B = Esc: 작업실로",
- "viewLarge": "클릭 / A: 크게 보기"
+ "viewLarge": "클릭 / A: 크게 보기",
+ "shareText": "나만의 픽셀 아틀리에를 걸어 보세요.",
+ "linkCopied": "링크를 복사했다. 누구에게 보내 볼까."
 }

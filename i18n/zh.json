@@ -48,7 +48,7 @@
  "secretCollab": "在做什么呢～？",
  "contact": "联系方式",
  "tvOff": "关电视",
- "descGallery": "画廊 — 丙烯、迷你丙烯、素描",
+ "descGallery": "UMSEE 画廊",
  "descCareer": "履历 — 用老电视看展览与合作",
  "descMeeting": "会议室 — 合作",
  "descInterview": "访谈室 — 电视看视频",
@@ -64,5 +64,7 @@
  "ctlTv": "◀▶ 频道  ·  A = Enter: 播放  ·  B = Esc: 关电视",
  "fullView": "查看大图 [A]",
  "ctlLobby": "◀▶ / 滚轮: 选门  ·  A = Enter / 点击: 进入  ·  B = Esc: 回工作室",
- "viewLarge": "点击 / A: 查看大图"
+ "viewLarge": "点击 / A: 查看大图",
+ "shareText": "来逛逛像素工作室吧。",
+ "linkCopied": "链接已复制。发给谁呢？"
 }

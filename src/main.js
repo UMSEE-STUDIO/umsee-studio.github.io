@@ -18,7 +18,7 @@
   }
   function layout(force) {
     const cam = portrait && !!Scenes.current?.camera;
-    const availH = innerHeight - pad.offsetHeight - ctlEl.offsetHeight - document.getElementById('langs').offsetHeight - (portrait ? 40 : 78);
+    const availH = innerHeight - pad.offsetHeight - ctlEl.offsetHeight - document.getElementById('topbar').offsetHeight - (portrait ? 40 : 78);
     const availW = innerWidth - (portrait ? 24 : 48); // device body + bezel
     let w = W, h = H;
     const side = Math.min(200, Math.floor(availW / 2)); // phone: square frame of side*2 px for every scene
@@ -99,6 +99,20 @@
     langs.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
     if (Scenes.current === TitleScene) TitleScene.refresh();
   };
+
+  // Share (megaphone): system share sheet on phones, copy the link elsewhere.
+  document.getElementById('share').addEventListener('click', async () => {
+    Audio8.unlock(); Audio8.sfx('click');
+    const url = 'https://umsee-studio.github.io/', data = { title: document.title, text: Data.t('shareText'), url };
+    const sayIt = msg => { const s = Scenes.current; UI.say([msg], s?.p ? () => ({ x: s.p.x + 8, y: s.p.y - 14 }) : { x: 160, y: 120 }); };
+    try {
+      if (navigator.share) { await navigator.share(data); return; }
+      await navigator.clipboard.writeText(url); sayIt(Data.t('linkCopied'));
+    } catch (e) {
+      if (e && e.name === 'AbortError') return; // user closed the share sheet
+      sayIt(url);
+    }
+  });
 
   const img = new Image();
   img.onload = () => { Pigeon.img = img; };

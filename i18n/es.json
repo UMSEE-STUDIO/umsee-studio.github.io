@@ -48,7 +48,7 @@
  "secretCollab": "¿Qué se estará preparando~?",
  "contact": "Contacto",
  "tvOff": "Apagar TV",
- "descGallery": "Galería — acrílicos, mini acrílicos, dibujos",
+ "descGallery": "Galería UMSEE",
  "descCareer": "Trayectoria — expos y colaboraciones en una tele vieja",
  "descMeeting": "Sala de reuniones — colaboraciones",
  "descInterview": "Sala de entrevistas — vídeos en la tele",
@@ -64,5 +64,7 @@
  "ctlTv": "◀▶ canal  ·  A = Enter: reproducir  ·  B = Esc: apagar",
  "fullView": "Ver grande [A]",
  "ctlLobby": "◀▶ / rueda: elegir puerta  ·  A = Enter / clic: entrar  ·  B = Esc: al estudio",
- "viewLarge": "Clic / A: ver grande"
+ "viewLarge": "Clic / A: ver grande",
+ "shareText": "Pasea por un estudio en píxeles.",
+ "linkCopied": "Enlace copiado. ¿A quién se lo mando?"
 }

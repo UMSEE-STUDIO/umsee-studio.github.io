@@ -128,7 +128,7 @@ const LobbyScene = (() => {
   const DOORS = [{ x: 30, w: 76 }, { x: 122, w: 76 }, { x: 214, w: 76 }]; // internal px
   let sel = 1, reps = [], layer = null, lastHv = '', pg = null;
 
-  function label() { const s = ROOMS[sel]; UI.setLabel(`${Data.t(s)} · ${Data.art.filter(a => a.folder === s).length}`); }
+  function label() { UI.setLabel(Data.t(ROOMS[sel])); } // room name only (no count)
   function enter(i) { Audio8.sfx('door'); Scenes.go(GalleryScene, i); }
   function doorAt(x, y) { return DOORS.findIndex(d => x >= d.x && x < d.x + d.w && y > 20 && y < 160); }
   function clear() { layer?.remove(); layer = null; }

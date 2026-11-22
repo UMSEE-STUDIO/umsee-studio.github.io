@@ -48,7 +48,7 @@
  "secretCollab": "何をしているのかな〜？",
  "contact": "連絡先",
  "tvOff": "テレビを消す",
- "descGallery": "ギャラリー — アクリル、ミニアクリル、ドローイング",
+ "descGallery": "UMSEE ギャラリー",
  "descCareer": "経歴 — 古いテレビで見る展示とコラボ",
  "descMeeting": "ミーティングルーム — コラボレーション",
  "descInterview": "インタビュールーム — テレビで動画",
@@ -64,5 +64,7 @@
  "ctlTv": "◀▶ チャンネル  ·  A = Enter: 再生  ·  B = Esc: テレビを消す",
  "fullView": "大きく見る [A]",
  "ctlLobby": "◀▶ / ホイール: ドアを選ぶ  ·  A = Enter / クリック: 入る  ·  B = Esc: アトリエへ",
- "viewLarge": "クリック / A: 大きく見る"
+ "viewLarge": "クリック / A: 大きく見る",
+ "shareText": "ピクセルのアトリエを歩いてみて。",
+ "linkCopied": "リンクをコピーした。誰に送ろうかな。"
 }
