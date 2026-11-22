@@ -43,19 +43,26 @@ const Panels = (() => {
     const list = Data.career.interviews, n = list.length;
     const render = () => {
       const v = list[ch];
-      return `<div class="static"></div><h2>${t('channel')} ${ch + 1}/${n}</h2>${videoBlock(v.url, v.title)}`;
+      return `<div class="static"></div><h2><button class="chbtn" data-ch="-1" aria-label="prev channel">◀</button> ${t('channel')} ${ch + 1}/${n} <button class="chbtn" data-ch="1" aria-label="next channel">▶</button></h2>${videoBlock(v.url, v.title)}`;
     };
     Audio8.sfx('static');
+    // change channel (also stops a playing video: the TV shows the next channel's card)
+    const switchCh = d => {
+      if (p.querySelector('iframe')) Audio8.setHold(false);
+      ch = (ch + d + n) % n; InterviewScene.def.channel = ch; Audio8.sfx('static'); p.querySelector('.body').innerHTML = render();
+      p.querySelector('[data-ch="1"]')?.focus({ preventScroll: true });
+    };
     const p = UI.open(render(), {
       cls: 'tv',
       onKey: () => {
         const d = Input.consume('dir:left') ? -1 : Input.consume('dir:right') ? 1 : 0;
-        if (d && n > 1 && !p.querySelector('iframe')) { ch = (ch + d + n) % n; InterviewScene.def.channel = ch; Audio8.sfx('static'); p.querySelector('.body').innerHTML = render(); return true; }
+        if (d && n > 1) { switchCh(d); return true; }
         if (Input.consume('a')) { play(p); return true; }
         return false;
       },
     });
     wireVideo(p);
+    p.addEventListener('click', ev => { const b = ev.target.closest('[data-ch]'); if (b) switchCh(+b.dataset.ch); });
   }
 
   function about() {

@@ -367,7 +367,8 @@ const exitDoor = (back, x = 9) => ({
     rect(c, COL.yellow, X + 14, Y + 4, 4, 6); rect(c, COL.yellow, X + 12, Y + 8, 8, 2); rect(c, COL.yellow, X + 14, Y + 10, 4, 2);
   },
 });
-function onceEnter(key, id, r) { if (!Save.get('enter.' + key, false)) { Save.set('enter.' + key, true); setTimeout(() => r.say(id), 600); } }
+// room entry line: every time the pigeon walks in (user request; was once ever)
+function onceEnter(key, id, r) { Save.set('enter.' + key, true); setTimeout(() => { if (Scenes.current === r) r.say(id); }, 600); }
 const deco = (id, x, y, w, h, draw) => ({ id, x, y, w, h, draw });
 const floorDeco = (id, draw) => ({ id, x: 0, y: 3, w: 0, h: 0, solid: false, draw });
 
