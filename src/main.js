@@ -113,7 +113,8 @@
   // Share (megaphone): system share sheet on phones, copy the link elsewhere.
   document.getElementById('share').addEventListener('click', async () => {
     Audio8.unlock(); Audio8.sfx('click');
-    const url = 'https://umsee-studio.github.io/', data = { title: document.title, text: Data.t('shareText'), url };
+    // ?v=<deploy> makes chat apps (KakaoTalk...) treat each deploy as a new link and fetch the new share card
+    const url = 'https://umsee-studio.github.io/?v=' + encodeURIComponent(window.ASSET_V || ''), data = { title: document.title, text: Data.t('shareText'), url };
     const sayIt = msg => { const s = Scenes.current; UI.say([msg], s?.p ? () => ({ x: s.p.x + 8, y: s.p.y - 14 }) : { x: 160, y: 120 }); };
     try {
       if (navigator.share) { await navigator.share(data); return; }
