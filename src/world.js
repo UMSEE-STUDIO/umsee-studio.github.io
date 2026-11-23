@@ -237,7 +237,7 @@ const saidThisVisit = new Set(); // discovery lines already spoken since the pag
 function makeRoom(def) {
   return {
     camera: true, // portrait phones: square window following the pigeon
-    def, p: null, grid: null, near: null, idle: 0, hinted: false, exitSaid: false, time: 0, far: 0, lastHes: -9, ringT: 0, ringing: 0,
+    def, p: null, grid: null, near: null, idle: 0, hinted: false, exitSaid: false, time: 0, far: 0, lastHes: -9, ringT: 0, ringing: 0, cooT: 0,
     enter(arg) {
       this.grid = Array.from({ length: ROWS }, (_, y) => Array.from({ length: COLS }, (_, x) => (x === 0 || y <= 2 || x === COLS - 1 || y === ROWS - 1) ? 1 : 0));
       for (const o of def.objects) if (o.solid !== false) for (let y = o.y; y < o.y + o.h; y++) for (let x = o.x; x < o.x + o.w; x++) this.grid[y][x] = 1;
@@ -245,7 +245,7 @@ function makeRoom(def) {
       const [sx, sy] = from ? this.frontOf(from) : def.start;
       this.p = Pigeon.make(sx, sy, from ? 'down' : 'up');
       this.start = [sx, sy];
-      Object.assign(this, { near: null, idle: 0, hinted: false, exitSaid: false, time: 0, far: 0, lastHes: -9, ringT: 18 + Math.random() * 15, ringing: 0 });
+      Object.assign(this, { near: null, idle: 0, hinted: false, exitSaid: false, time: 0, far: 0, lastHes: -9, ringT: 18 + Math.random() * 15, ringing: 0, cooT: 1 + Math.random() * 2 });
       UI.setLabel('');
       Audio8.setTrack('main');
       def.onEnter?.(this);
@@ -316,6 +316,8 @@ function makeRoom(def) {
       this.idle += dt;
       if (!this.hinted && this.idle > 5) { this.hinted = true; this.say(matchMedia('(pointer: coarse)').matches ? 'HINT_MOVE_TOUCH' : 'HINT_MOVE'); }
       if (this.idle > 20) { this.idle = 5.01; this.say('HINT_IDLE'); }
+      // studio home: a soft coo every 1-3 s (random) while standing still, once the other lines are done
+      if (def.coo && this.idle > 5 && !p.moving && !UI.bubbleOn() && (this.cooT -= dt) <= 0) { this.cooT = 1 + Math.random() * 2; this.say('HINT_COO'); }
       // random phone ring (M6)
       if (def.ring) {
         this.ringing = Math.max(0, this.ringing - dt);
@@ -375,7 +377,7 @@ const floorDeco = (id, draw) => ({ id, x: 0, y: 3, w: 0, h: 0, solid: false, dra
 
 // ---------- M1 hub: Umsee studio ----------
 const HubScene = makeRoom({
-  start: [10, 7],
+  start: [10, 7], coo: true,
   objects: [
     floorDeco('mess', c => { // work traces on the floor, drawn first
       Draw.splat(c, 120, 100, COL.pink); Draw.splat(c, 140, 92, COL.yellow); Draw.splat(c, 196, 140, '#5ec8ff');

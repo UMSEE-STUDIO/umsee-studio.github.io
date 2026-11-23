@@ -54,6 +54,16 @@ tw: 有什麼東西。摸摸看？
 fr: Il y a quelque chose. J'y touche ?
 es: Aquí hay algo. ¿Lo toco?
 
+@HINT_COO
+[상황] 스튜디오 홈에서 가만히 있는 동안 1~3초 간격(무작위)으로 자주 나오는 울음소리
+ko: 구구..
+en: Coo coo..
+ja: クルック..
+zh: 咕咕..
+tw: 咕咕..
+fr: Rou rou..
+es: Cu cu..
+
 @HINT_IDLE
 [상황] 20초 동안 가만히 있을 때(무작위 한 묶음)
 ko: 구구...
