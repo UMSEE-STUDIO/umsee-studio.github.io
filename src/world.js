@@ -241,6 +241,8 @@ function makeRoom(def) {
     enter(arg) {
       this.grid = Array.from({ length: ROWS }, (_, y) => Array.from({ length: COLS }, (_, x) => (x === 0 || y <= 2 || x === COLS - 1 || y === ROWS - 1) ? 1 : 0));
       for (const o of def.objects) if (o.solid !== false) for (let y = o.y; y < o.y + o.h; y++) for (let x = o.x; x < o.x + o.w; x++) this.grid[y][x] = 1;
+      // flight grid (def.leap rooms): the pigeon may fly over plain furniture, never over the shell or interactive objects (doors, TVs)
+      this.fgrid = def.leap ? this.grid.map((row, y) => row.map((v, x) => (v && y > 2 && x > 0 && x < COLS - 1 && y < ROWS - 1 && def.objects.some(o => o.solid !== false && !o.act && x >= o.x && x < o.x + o.w && y >= o.y && y < o.y + o.h)) ? 0 : v)) : null;
       const from = def.objects.find(o => o.id === arg);
       const [sx, sy] = from ? this.frontOf(from) : def.start;
       this.p = Pigeon.make(sx, sy, from ? 'down' : 'up');
@@ -276,8 +278,29 @@ function makeRoom(def) {
       const tx = Math.floor(px / TILE), ty = Math.floor(py / TILE);
       return def.objects.find(o => o.act && tx >= o.x && tx < o.x + o.w && ty >= (o.y <= 2 ? 0 : o.y - 1) && ty < o.y + o.h);
     },
+    // click route: walk, or (def.leap) fly straight over plain furniture when that saves 4+ tiles
+    route(goals) {
+      const p = this.p, walk = findPath(this.grid, p.tx, p.ty, goals);
+      if (this.fgrid) {
+        const air = findPath(this.fgrid, p.tx, p.ty, goals.filter(([x, y]) => this.grid[y]?.[x] === 0));
+        if (air && (!walk || walk.length - air.length >= 4)) return { path: air, air: true };
+      }
+      return walk ? { path: walk, air: false } : null;
+    },
+    // keyboard / pad into plain furniture: hop over it to the first free tile behind it (at most 4 tiles deep)
+    leapOver(d) {
+      const p = this.p, [ox, oy] = DIRS[d];
+      for (let n = 1; n <= 4; n++) {
+        const x = p.tx + ox * n, y = p.ty + oy * n, g = this.grid[y]?.[x];
+        if (g === undefined) return null;
+        if (g === 0) return n > 1 ? Array(n).fill(d) : null;
+        if (this.fgrid[y][x] !== 0) return null;
+      }
+      return null;
+    },
     update(dt) {
-      const p = this.p, dir = Input.dir(), tap = Input.takeTap();
+      const p = this.p; let dir = Input.dir(), tap = Input.takeTap();
+      if (p.air) { dir = null; tap = null; } // a hop over furniture is committed until the landing
       this.time += dt;
       if (Input.consume('b')) { def.exit?.(this); return; }
       if (dir || tap) { this.idle = 0; if (dir) { p.goal = null; p.fly = false; } }
@@ -286,13 +309,17 @@ function makeRoom(def) {
         const o = this.objAt(tap.x, tap.y);
         if (o) {
           if (this.adjacent(o)) { this.interact(o); return; }
-          const path = findPath(this.grid, p.tx, p.ty, this.spots(o));
-          if (path) { p.path = path; p.goal = o; p.fly = !!o.fly; }
-        } else { const path = findPath(this.grid, p.tx, p.ty, [[Math.floor(tap.x / TILE), Math.floor(tap.y / TILE)]]); if (path) { p.path = path; p.goal = null; p.fly = false; } }
+          const r = this.route(this.spots(o));
+          if (r) { p.path = r.path; p.goal = o; p.air = r.air; p.fly = !!o.fly || r.air; }
+        } else { const r = this.route([[Math.floor(tap.x / TILE), Math.floor(tap.y / TILE)]]); if (r) { p.path = r.path; p.goal = null; p.air = r.air; p.fly = r.air; } }
+      }
+      if (this.fgrid && dir && !p.moving) { // pressing into plain furniture: take off over it
+        const hop = this.grid[p.ty + DIRS[dir][1]]?.[p.tx + DIRS[dir][0]] ? this.leapOver(dir) : null;
+        if (hop) { p.path = hop; p.goal = null; p.face = dir; p.air = true; p.fly = true; dir = null; }
       }
       const faceBefore = p.face;
-      const arrived = stepActor(p, this.grid, dt, dir);
-      if (!p.path.length && !p.moving) p.fly = false;
+      const arrived = stepActor(p, this.grid, dt, dir, this.fgrid);
+      if (!p.path.length && !p.moving) { p.fly = false; p.air = false; }
       this.far = Math.max(this.far, this.start[1] - p.ty);
       if (def.hesitate && p.face === 'down' && faceBefore !== 'down' && this.far >= 2 && this.time - this.lastHes > 6) { this.lastHes = this.time; this.say(def.hesitate); }
       if (!p.moving && !p.path.length && !dir) faceMouse(p, p.x + 8, p.y + 6);
@@ -377,7 +404,7 @@ const floorDeco = (id, draw) => ({ id, x: 0, y: 3, w: 0, h: 0, solid: false, dra
 
 // ---------- M1 hub: Umsee studio ----------
 const HubScene = makeRoom({
-  start: [10, 7], coo: true,
+  start: [10, 7], coo: true, leap: true,
   objects: [
     floorDeco('mess', c => { // work traces on the floor, drawn first
       Draw.splat(c, 120, 100, COL.pink); Draw.splat(c, 140, 92, COL.yellow); Draw.splat(c, 196, 140, '#5ec8ff');

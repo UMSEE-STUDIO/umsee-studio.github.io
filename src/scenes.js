@@ -94,7 +94,7 @@ function findPath(grid, sx, sy, goals) {
 }
 
 // One tile step at a time; keyboard/pad and click paths share this movement.
-function stepActor(p, grid, dt, wantDir) {
+function stepActor(p, grid, dt, wantDir, fgrid) {
   const SPEED = p.fly ? 176 : 64; // flying (click on a studio door) is ~2.75x faster
   if (!p.moving) {
     const d = wantDir || p.path.shift();
@@ -102,7 +102,7 @@ function stepActor(p, grid, dt, wantDir) {
     if (wantDir) { p.path = []; p.goal = null; }
     p.face = d;
     const [ox, oy] = DIRS[d], nx = p.tx + ox, ny = p.ty + oy;
-    if (grid[ny]?.[nx] !== 0) { p.path = []; return false; }
+    if ((p.air && fgrid ? fgrid : grid)[ny]?.[nx] !== 0) { p.path = []; p.air = false; return false; }
     p.tx = nx; p.ty = ny; p.moving = true;
   }
   p.t += dt;
