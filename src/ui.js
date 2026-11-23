@@ -47,10 +47,10 @@ const UI = (() => {
   }
   // ---- full-size image viewer (fixed over the whole browser window) ----
   let viewer = null;
-  function openViewer(src, title) {
+  function openViewer(src, title, nav = null) { // nav(d) -> {src, title} switches to the previous/next image (d = -1 / 1)
     closeViewer();
     const v = document.createElement('div'); v.className = 'viewer';
-    v.innerHTML = `<div class="vscroll"><img alt="${esc(title)}"></div><div class="vbar"><span class="ratio"></span><span class="vt">${esc(title)}</span><button data-vclose>✕ Esc</button></div>`;
+    v.innerHTML = `<div class="vscroll"><img alt="${esc(title)}"></div>${nav ? '<button class="vnav prev" data-vnav="-1" aria-label="prev">◀</button><button class="vnav next" data-vnav="1" aria-label="next">▶</button>' : ''}<div class="vbar"><span class="ratio"></span><span class="vt">${esc(title)}</span><button data-vclose>✕ Esc</button></div>`;
     document.body.appendChild(v);
     const img = v.querySelector('img'), box = v.querySelector('.vscroll'), ratio = v.querySelector('.ratio');
     let z = 0, fit = 1;
@@ -66,21 +66,25 @@ const UI = (() => {
     };
     const zoom = (f, cx, cy) => { z = Math.min(4, Math.max(fit, (z || fit) * f)); if (z <= fit * 1.001) z = 0; apply(cx, cy); };
     img.onload = () => apply(); img.src = src;
+    const show = d => { const n = nav?.(d); if (!n) return; z = 0; img.alt = n.title; v.querySelector('.vt').textContent = n.title; img.src = n.src; };
+    v.querySelectorAll('[data-vnav]').forEach(b => b.addEventListener('click', ev => { ev.stopPropagation(); show(+b.dataset.vnav); }));
     box.addEventListener('wheel', e => { e.preventDefault(); const r = box.getBoundingClientRect(); zoom(e.deltaY < 0 ? 1.25 : 0.8, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }, { passive: false });
     let drag = null, moved = false;
     box.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY, box.scrollLeft, box.scrollTop]; moved = false; box.setPointerCapture(e.pointerId); });
     box.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; box.scrollLeft = drag[2] - dx; box.scrollTop = drag[3] - dy; });
     box.addEventListener('pointerup', e => {
       if (drag && !moved) { const r = box.getBoundingClientRect(); z ? (z = 0, apply()) : zoom(2, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }
+      else if (drag && nav && !z) { const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) show(dx < 0 ? 1 : -1); } // swipe at fit size
       drag = null;
     });
     v.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     addEventListener('resize', v.onResize = () => apply());
-    viewer = { el: v, zoom };
+    viewer = { el: v, zoom, nav: show, hasNav: !!nav, atFit: () => !z };
   }
   function closeViewer() { if (!viewer) return; removeEventListener('resize', viewer.el.onResize); viewer.el.remove(); viewer = null; }
   function updateViewer() {
     if (Input.consume('b') || Input.consume('a')) { closeViewer(); return; }
+    if (viewer.hasNav && viewer.atFit()) { if (Input.consume('dir:left')) viewer.nav(-1); else if (Input.consume('dir:right')) viewer.nav(1); }
     if (Input.consume('zin')) viewer.zoom(1.25); if (Input.consume('zout')) viewer.zoom(0.8);
   }
 

@@ -51,9 +51,9 @@ const Pigeon = {
   ROW: { right: 0, left: 0, down: 1, up: 2 },
   make(tx, ty, face = 'down') { return { tx, ty, x: tx * TILE, y: ty * TILE, face, moving: false, t: 0, path: [], goal: null }; },
   draw(ctx, p) {
-    const frame = p.moving ? Math.floor(p.t * 8) % 4 : 0;
-    const row = this.ROW[p.face], dx = Math.round(p.x) - 8, dy = Math.round(p.y) - 16;
-    rect(ctx, 'rgba(0,0,0,0.25)', dx + 10, dy + 30, 12, 2);
+    const frame = p.moving ? Math.floor(p.t * (p.fly ? 16 : 8)) % 4 : 0; // flying: faster flaps
+    const row = this.ROW[p.face], dx = Math.round(p.x) - 8, lift = p.fly ? 6 : 0, dy = Math.round(p.y) - 16 - lift;
+    rect(ctx, 'rgba(0,0,0,0.25)', dx + 10, dy + 30 + lift, 12, 2);
     if (!this.img) { rect(ctx, COL.lilac, dx + 8, dy + 16, 16, 16); return; }
     ctx.save();
     if (p.face === 'left') { ctx.translate(dx + 32, dy); ctx.scale(-1, 1); ctx.drawImage(this.img, frame * 32, row * 32, 32, 32, 0, 0, 32, 32); }
@@ -95,7 +95,7 @@ function findPath(grid, sx, sy, goals) {
 
 // One tile step at a time; keyboard/pad and click paths share this movement.
 function stepActor(p, grid, dt, wantDir) {
-  const SPEED = 64;
+  const SPEED = p.fly ? 176 : 64; // flying (click on a studio door) is ~2.75x faster
   if (!p.moving) {
     const d = wantDir || p.path.shift();
     if (!d) return false;

@@ -280,18 +280,19 @@ function makeRoom(def) {
       const p = this.p, dir = Input.dir(), tap = Input.takeTap();
       this.time += dt;
       if (Input.consume('b')) { def.exit?.(this); return; }
-      if (dir || tap) { this.idle = 0; if (dir) p.goal = null; }
+      if (dir || tap) { this.idle = 0; if (dir) { p.goal = null; p.fly = false; } }
       if (tap) { const wr = this.wallAt(tap.x, tap.y); if (wr) { this.viewWall(wr); return; } }
       if (tap) {
         const o = this.objAt(tap.x, tap.y);
         if (o) {
           if (this.adjacent(o)) { this.interact(o); return; }
           const path = findPath(this.grid, p.tx, p.ty, this.spots(o));
-          if (path) { p.path = path; p.goal = o; }
-        } else { const path = findPath(this.grid, p.tx, p.ty, [[Math.floor(tap.x / TILE), Math.floor(tap.y / TILE)]]); if (path) { p.path = path; p.goal = null; } }
+          if (path) { p.path = path; p.goal = o; p.fly = !!o.fly; }
+        } else { const path = findPath(this.grid, p.tx, p.ty, [[Math.floor(tap.x / TILE), Math.floor(tap.y / TILE)]]); if (path) { p.path = path; p.goal = null; p.fly = false; } }
       }
       const faceBefore = p.face;
       const arrived = stepActor(p, this.grid, dt, dir);
+      if (!p.path.length && !p.moving) p.fly = false;
       this.far = Math.max(this.far, this.start[1] - p.ty);
       if (def.hesitate && p.face === 'down' && faceBefore !== 'down' && this.far >= 2 && this.time - this.lastHes > 6) { this.lastHes = this.time; this.say(def.hesitate); }
       if (!p.moving && !p.path.length && !dir) faceMouse(p, p.x + 8, p.y + 6);
@@ -382,19 +383,19 @@ const HubScene = makeRoom({
       Draw.tubes(c, 160, 96); Draw.bucket(c, 116, 96, COL.pink);
     }),
     deco('window', 2, 2, 2, 1, (c, X, Y, w) => Draw.window(c, X, w)),
-    { id: 'gallery', x: 5, y: 2, w: 2, h: 1, disc: 'DISC_GALLERY', desc: 'descGallery', act: () => Scenes.go(LobbyScene),
+    { id: 'gallery', fly: true, x: 5, y: 2, w: 2, h: 1, disc: 'DISC_GALLERY', desc: 'descGallery', act: () => Scenes.go(LobbyScene),
       draw: (c, X, Y, w) => Draw.door(c, X, Y, w, '#6b4fa0', Draw.icon.frame) },
     { id: 'about', x: 8, y: 2, w: 1, h: 1, disc: 'DISC_ABOUT', desc: 'descAbout', act: () => Panels.about(), draw: (c, X) => Draw.poster(c, X) },
     deco('shelf', 9, 2, 2, 1, (c, X, Y, w) => Draw.bookshelf(c, X + 2, w - 2)),
-    { id: 'meeting', x: 13, y: 2, w: 2, h: 1, disc: 'DISC_MEETING', sfx: 'bell', desc: 'descMeeting', act: () => Scenes.go(MeetingScene),
+    { id: 'meeting', fly: true, x: 13, y: 2, w: 2, h: 1, disc: 'DISC_MEETING', sfx: 'bell', desc: 'descMeeting', act: () => Scenes.go(MeetingScene),
       draw: (c, X, Y, w) => Draw.door(c, X, Y, w, COL.wood, Draw.icon.bell) },
-    { id: 'career', x: 1, y: 4, w: 3, h: 2, disc: 'DISC_CAREER', desc: 'descCareer', act: () => Scenes.go(CareerScene), draw: (c, X, Y, w, h) => Draw.crt(c, X, Y, w, h, true) },
+    { id: 'career', fly: true, x: 1, y: 4, w: 3, h: 2, disc: 'DISC_CAREER', desc: 'descCareer', act: () => Scenes.go(CareerScene), draw: (c, X, Y, w, h) => Draw.crt(c, X, Y, w, h, true) },
     { id: 'easel', x: 7, y: 4, w: 2, h: 1, draw: (c, X, Y, w, h) => Draw.easel(c, X - 2, Y, w + 4, h) },
     { id: 'worktable', x: 11, y: 4, w: 3, h: 1, draw: (c, X, Y, w, h) => Draw.workTable(c, X, Y, w, h) },
-    { id: 'interview', x: 15, y: 3, w: 3, h: 2, disc: 'DISC_INTERVIEW', desc: 'descInterview', act: () => Scenes.go(InterviewScene),
+    { id: 'interview', fly: true, x: 15, y: 3, w: 3, h: 2, disc: 'DISC_INTERVIEW', desc: 'descInterview', act: () => Scenes.go(InterviewScene),
       draw: (c, X, Y, w, h) => { Draw.crt(c, X, Y, w, h, false); } },
     { id: 'sofa', x: 14, y: 7, w: 4, h: 1, draw: (c, X, Y, w) => { Draw.sofa(c, X, Y, w); Draw.remote(c, X + w - 9, Y - 4); } },
-    { id: 'contact', x: 1, y: 8, w: 3, h: 2, disc: 'DISC_CONTACT', desc: 'descContact', act: () => Scenes.go(ContactScene),
+    { id: 'contact', fly: true, x: 1, y: 8, w: 3, h: 2, disc: 'DISC_CONTACT', desc: 'descContact', act: () => Scenes.go(ContactScene),
       draw: (c, X, Y, w, h) => { Draw.desk(c, X, Y, w, h); Draw.mailbox(c, X + w - 20, Y - 4); Draw.letters(c, X + 6, Y - 4); Draw.pens(c, X + 24, Y - 3); } },
     { id: 'canvases', x: 17, y: 9, w: 2, h: 1, draw: (c, X, Y, w, h) => Draw.canvasStack(c, X, Y - 16, w, h + 16) },
     deco('plant', 18, 3, 1, 1, (c, X, Y) => Draw.plant(c, X, Y)),

@@ -112,7 +112,8 @@ const Panels = (() => {
         <a href="${mailto(`${Data.t('mailSubjectOrder')} - ${it.id}`)}">${t('orderInquiry')}</a></p>`;
     };
     const go = d => { i = (i + d + list.length) % list.length; p.querySelector('.body').innerHTML = render(); Images.get(list[(i + d + list.length) % list.length].thumb); };
-    const full = () => UI.openViewer(list[i].web, title(i));
+    const n = list.length;
+    const full = () => UI.openViewer(list[i].web, title(i), n > 1 ? d => { go(d); const img = new Image(); img.src = list[(i + d + n) % n].web; return { src: list[i].web, title: title(i) }; } : null);
     const p = UI.open(render(), {
       cls: 'art',
       onKey: () => {

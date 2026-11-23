@@ -93,6 +93,9 @@ body { display: flex; flex-direction: column; align-items: center; justify-conte
 .viewer img { display: block; user-select: none; -webkit-user-drag: none; }
 .viewer .vbar { display: flex; gap: 1em; align-items: center; justify-content: space-between; padding: .5em 1em; background: #0b0f2a; border-top: 2px solid #FB128E; }
 .viewer .ratio { color: #FDE003; }
+.viewer .vnav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; font-size: 1.4em; opacity: .85; }
+.viewer .vnav.prev { left: .5em; }
+.viewer .vnav.next { right: .5em; }
 .viewer button { background: #FDE003; color: #0b0f2a; border: 0; padding: .3em .8em; font: inherit; cursor: pointer; }
 
 /* TV: static switch-on and video fitted to the frame */
