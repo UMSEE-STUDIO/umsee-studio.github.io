@@ -68,7 +68,8 @@ const Panels = (() => {
   function about() {
     const c = Data.career;
     UI.open(`<h2>${t('about')}</h2><p class="name">${e(c.name)}</p>${Data.about.intro.map(x => `<p class="intro">${e(x)}</p>`).join('')}
-      <p>${ext('https://www.instagram.com/ummm.see/', Data.t('instagram'))}</p>`);
+      <div class="about-foot"><p>${ext('https://www.instagram.com/ummm.see/', Data.t('instagram'))}</p>
+      <div class="npc" aria-hidden="true"><i class="sp s1"></i><i class="sp s2"></i><i class="sp s3"></i><i class="sp s4"></i><span class="umsee"></span></div></div>`, { cls: 'about' });
   }
 
   function collabItem(c) {
