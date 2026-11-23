@@ -391,7 +391,7 @@ const HubScene = makeRoom({
       draw: (c, X, Y, w) => Draw.door(c, X, Y, w, COL.wood, Draw.icon.bell) },
     { id: 'career', fly: true, x: 1, y: 4, w: 3, h: 2, disc: 'DISC_CAREER', desc: 'descCareer', act: () => Scenes.go(CareerScene), draw: (c, X, Y, w, h) => Draw.crt(c, X, Y, w, h, true) },
     { id: 'easel', x: 7, y: 6, w: 2, h: 1, draw: (c, X, Y, w, h) => Draw.easel(c, X - 2, Y, w + 4, h) },
-    { id: 'worktable', x: 11, y: 5, w: 3, h: 1, draw: (c, X, Y, w, h) => Draw.workTable(c, X, Y, w, h) },
+    { id: 'worktable', x: 9, y: 5, w: 3, h: 1, draw: (c, X, Y, w, h) => Draw.workTable(c, X, Y, w, h) },
     { id: 'interview', fly: true, x: 15, y: 4, w: 3, h: 2, disc: 'DISC_INTERVIEW', desc: 'descInterview', act: () => Scenes.go(InterviewScene),
       draw: (c, X, Y, w, h) => { Draw.crt(c, X, Y, w, h, false); } },
     { id: 'sofa', x: 14, y: 7, w: 4, h: 1, draw: (c, X, Y, w) => { Draw.sofa(c, X, Y, w); Draw.remote(c, X + w - 9, Y - 4); } },

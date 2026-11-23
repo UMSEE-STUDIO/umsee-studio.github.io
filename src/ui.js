@@ -69,7 +69,7 @@ const UI = (() => {
     const show = d => { const n = nav?.(d); if (!n) return; z = 0; img.alt = n.title; v.querySelector('.vt').textContent = n.title; img.src = n.src; };
     v.querySelectorAll('[data-vnav]').forEach(b => b.addEventListener('click', ev => { ev.stopPropagation(); show(+b.dataset.vnav); }));
     box.addEventListener('wheel', e => { e.preventDefault(); const r = box.getBoundingClientRect(); zoom(Math.min(1.25, Math.max(0.8, Math.exp(-e.deltaY * 0.002))), (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }, { passive: false });
-    let drag = null, moved = false;
+    let drag = null, moved = false, lastTap = null;
     const fingers = new Map(); let pinch = 0; // pinch = last distance between two fingers (0 = not pinching)
     const gap = () => { const [a, b] = [...fingers.values()]; return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
     box.addEventListener('pointerdown', e => {
@@ -90,7 +90,11 @@ const UI = (() => {
     box.addEventListener('pointerup', e => {
       if (moved && fingers.size > 1) { endFinger(e); drag = null; return; } // end of a pinch: no tap, no swipe
       endFinger(e);
-      if (drag && !moved) { const r = box.getBoundingClientRect(); z ? (z = 0, apply()) : zoom(2, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }
+      if (drag && !moved) { // double tap / double click toggles zoom; a single tap does nothing
+        const t = performance.now(), dbl = lastTap && t - lastTap.t < 320 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 30;
+        if (dbl) { lastTap = null; const r = box.getBoundingClientRect(); z ? (z = 0, apply()) : zoom(2, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }
+        else lastTap = { t, x: e.clientX, y: e.clientY };
+      }
       else if (drag && nav && !z) { const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) show(dx < 0 ? 1 : -1); } // swipe at fit size
       drag = null;
     });
