@@ -345,7 +345,7 @@ function makeRoom(def) {
       if (this.idle > 20) { this.idle = 5.01; this.say('HINT_IDLE'); }
       // studio home: a soft coo every 1-3 s (random) while standing still, once the other lines are done
       if (def.coo && this.idle > 5 && !p.moving && !UI.bubbleOn() && (this.cooT -= dt) <= 0) { this.cooT = 1 + Math.random() * 2; this.say('HINT_COO'); }
-      def.npcStep?.(dt);
+      def.npcStep?.(dt, this);
       // the artist NPC mutters now and then (every 10-18 s, never over another bubble)
       const npc = def.objects.find(o => o.talk);
       if (npc && !UI.bubbleOn() && (this.npcT = (this.npcT ?? 8) - dt) <= 0) { this.npcT = 10 + Math.random() * 8; this.sayAt('NPC_UMSEE_IDLE', npc); }
@@ -379,7 +379,7 @@ function makeRoom(def) {
     },
     draw(ctx) {
       def.drawBg(ctx, this);
-      const objs = [...def.objects].sort((a, b) => (a.y + a.h) - (b.y + b.h));
+      const key = o => o.sortY ? o.sortY() : o.y + o.h, objs = [...def.objects].sort((a, b) => key(a) - key(b));
       let drawn = false;
       for (const o of objs) {
         if (!drawn && !this.p.air && o.y > 2 && o.y + o.h - 1 > this.p.ty) { Pigeon.draw(ctx, this.p); drawn = true; }
@@ -420,29 +420,61 @@ const umseeNpc = (x, y, talk) => ({
 // UMSEE in the studio home: draws at the work table or sits on the sofa, stands up to stretch in between,
 // and jumps up when the doorbell rings. Frames in assets/umsee_hub.png: 0-1 drawing, 2 sofa, 3 stretch, 4 standing.
 const hubImg = new Image(); hubImg.src = 'assets/umsee_hub.png';
-const hubNpc = { spot: 'table', mode: 'sit', t: 0, next: 12 };
-function hubNpcStep(dt) {
+const walkImg = new Image(); walkImg.src = 'assets/umsee_sheet.png'; // rows: side, front, back; 4 walk frames each
+// UMSEE is an NPC: no hopping, no rushing. He strolls tile by tile (24 px/s) between the table seat and the sofa.
+const SEAT = { table: [10, 4], sofa: [15, 6] };
+const hubNpc = { spot: 'table', mode: 'sit', t: 0, next: 12, x: 152, y: 25, path: [], tx: 10, ty: 4, face: 'down' };
+function hubNpcStep(dt, r) {
   const n = hubNpc; n.t += dt;
+  if (n.mode === 'walk') {
+    const [gx, gy] = [n.tx * TILE - 8, (n.ty + 1) * TILE - 55], s = 24 * dt;
+    n.x += Math.sign(gx - n.x) * Math.min(s, Math.abs(gx - n.x)); n.y += Math.sign(gy - n.y) * Math.min(s, Math.abs(gy - n.y));
+    if (n.x === gx && n.y === gy) {
+      const d = n.path.shift();
+      if (!d) { n.spot = n.goal; n.mode = 'sit'; n.face = 'down'; n.t = 0; n.next = 10 + Math.random() * 6; return; }
+      n.face = d; n.tx += DIRS[d][0]; n.ty += DIRS[d][1];
+    }
+    return;
+  }
   if (n.t < n.next) return;
-  if (n.mode === 'sit') { n.mode = 'stretch'; n.t = 0; n.next = 2; }
-  else if (n.mode === 'stretch') { n.spot = n.spot === 'table' ? 'sofa' : 'table'; n.mode = 'sit'; n.t = 0; n.next = 10 + Math.random() * 6; }
-  else { n.mode = 'sit'; n.t = 0; n.next = 6 + Math.random() * 4; } // after the doorbell
+  if (n.mode === 'sit') { n.mode = 'stretch'; n.t = 0; n.next = 2; return; }
+  if (n.mode === 'stretch') { // get up and stroll to the other seat
+    const goal = n.spot === 'table' ? 'sofa' : 'table', [sx, sy] = SEAT[n.spot];
+    const g = r.grid.map(row => row.slice()); g[SEAT.table[1]][SEAT.table[0]] = 0;
+    const path = findPath(g, sx, sy, [SEAT[goal]]);
+    if (!path) { n.mode = 'sit'; n.t = 0; n.next = 8; return; }
+    Object.assign(n, { mode: 'walk', goal, path, tx: sx, ty: sy, x: sx * TILE - 8, y: (sy + 1) * TILE - 55, spot: null });
+    return;
+  }
+  n.mode = 'sit'; n.t = 0; n.next = 6 + Math.random() * 4; // after the doorbell
 }
 function hubNpcDraw(c, spot) {
-  const n = hubNpc; if (n.spot !== spot || !hubImg.complete || !hubImg.naturalWidth) return;
-  const t = performance.now() / 1000, standing = n.mode !== 'sit';
+  const n = hubNpc, t = performance.now() / 1000;
+  if (spot === 'walk') {
+    if (n.mode !== 'walk' || !walkImg.complete) return;
+    const row = { right: 0, left: 0, down: 1, up: 2 }[n.face], f = Math.floor(t * 5) % 4, x = Math.round(n.x), y = Math.round(n.y);
+    rect(c, 'rgba(0,0,0,0.25)', x + 9, y + 52, 14, 2);
+    c.save(); if (n.face === 'left') { c.translate(x + 32, y); c.scale(-1, 1); c.drawImage(walkImg, f * 32, row * 56, 32, 56, 0, 0, 32, 56); }
+    else c.drawImage(walkImg, f * 32, row * 56, 32, 56, x, y, 32, 56); c.restore(); return;
+  }
+  if (n.spot !== spot || !hubImg.complete || !hubImg.naturalWidth) return;
+  const standing = n.mode !== 'sit';
   const f = standing ? (n.mode === 'stretch' ? 3 : 4) : spot === 'table' ? Math.floor(t * 3) % 2 : 2;
   const nod = !standing && spot === 'sofa' && (t % 2.6) < 0.4 ? 1 : 0;
-  const [x, y] = spot === 'table' ? (standing ? [152, 25] : [152, 45]) : (standing ? [240, 62] : [240, 82 + nod]);
+  const [x, y] = spot === 'table' ? (standing ? [152, 25] : [152, 45]) : (standing ? [232, 41] : [240, 82 + nod]);
   c.drawImage(hubImg, f * 32, 0, 32, 56, x, y, 32, 56);
 }
-const hubNpcAnchor = () => hubNpc.spot === 'table' ? { x: 168, y: hubNpc.mode === 'sit' ? 44 : 24 } : { x: 256, y: hubNpc.mode === 'sit' ? 80 : 60 };
+const hubNpcAnchor = () => {
+  const n = hubNpc;
+  if (n.mode === 'walk') return { x: n.x + 16, y: n.y - 4 };
+  return n.spot === 'table' ? { x: 168, y: n.mode === 'sit' ? 44 : 24 } : { x: 248, y: n.mode === 'sit' ? 80 : 40 };
+};
 
 // ---------- M1 hub: Umsee studio ----------
 const HubScene = makeRoom({
   start: [10, 7], coo: true, leap: true, npcStep: hubNpcStep,
   // doorbell (meeting door found): UMSEE looks up a moment later
-  onDisc(o, r) { if (o.id !== 'meeting') return; setTimeout(() => { if (Scenes.current !== r) return; Object.assign(hubNpc, { mode: 'alert', t: 0, next: 3 }); r.sayAt('NPC_UMSEE_BELL', r.def.objects.find(x => x.id === 'umsee')); }, 1600); },
+  onDisc(o, r) { if (o.id !== 'meeting') return; setTimeout(() => { if (Scenes.current !== r) return; if (hubNpc.mode !== 'walk') Object.assign(hubNpc, { mode: 'alert', t: 0, next: 3 }); r.sayAt('NPC_UMSEE_BELL', r.def.objects.find(x => x.id === 'umsee')); }, 1600); },
   objects: [
     floorDeco('mess', c => { // work traces on the floor, drawn first
       Draw.splat(c, 120, 100, COL.pink); Draw.splat(c, 140, 92, COL.yellow); Draw.splat(c, 196, 140, '#5ec8ff');
@@ -464,6 +496,7 @@ const HubScene = makeRoom({
       draw: (c, X, Y, w, h) => { Draw.crt(c, X, Y, w, h, false); } },
     { id: 'sofa', x: 14, y: 7, w: 4, h: 1, draw: (c, X, Y, w) => { Draw.sofa(c, X, Y, w); Draw.remote(c, X + w - 9, Y - 4); } },
     { id: 'umseeSofa', x: 14, y: 7, w: 4, h: 1, solid: false, draw: c => hubNpcDraw(c, 'sofa') },
+    { id: 'umseeWalk', x: 0, y: 3, w: 0, h: 0, solid: false, sortY: () => hubNpc.ty + 1, draw: c => hubNpcDraw(c, 'walk') },
     { id: 'contact', fly: true, x: 1, y: 8, w: 3, h: 2, disc: 'DISC_CONTACT', desc: 'descContact', act: () => Scenes.go(ContactScene),
       draw: (c, X, Y, w, h) => { Draw.desk(c, X, Y, w, h); Draw.mailbox(c, X + w - 20, Y - 4); Draw.letters(c, X + 6, Y - 4); Draw.pens(c, X + 24, Y - 3); } },
     { id: 'canvases', x: 17, y: 9, w: 2, h: 1, draw: (c, X, Y, w, h) => Draw.canvasStack(c, X, Y - 16, w, h + 16) },
