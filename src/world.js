@@ -264,7 +264,7 @@ function makeRoom(def) {
     },
     adjacent(o) { return this.spots(o).some(([x, y]) => x === this.p.tx && y === this.p.ty); },
     say(id) { UI.say(Data.say(id), () => ({ x: this.p.x + 8, y: this.p.y - 14 })); },
-    sayAt(id, o) { UI.say(Data.say(id), { x: (o.x + o.w / 2) * TILE, y: o.y * TILE - 22 }); },
+    sayAt(id, o) { UI.say(Data.say(id), o.anchor?.() || { x: (o.x + o.w / 2) * TILE, y: o.y * TILE - (o.talk ? 44 : 22) }); },
     interact(o) {
       const ox = o.x + o.w / 2 - 0.5, oy = o.y + o.h / 2 - 0.5, dx = ox - this.p.tx, dy = oy - this.p.ty;
       if (!this.p.moving) this.p.face = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
@@ -345,6 +345,10 @@ function makeRoom(def) {
       if (this.idle > 20) { this.idle = 5.01; this.say('HINT_IDLE'); }
       // studio home: a soft coo every 1-3 s (random) while standing still, once the other lines are done
       if (def.coo && this.idle > 5 && !p.moving && !UI.bubbleOn() && (this.cooT -= dt) <= 0) { this.cooT = 1 + Math.random() * 2; this.say('HINT_COO'); }
+      def.npcStep?.(dt);
+      // the artist NPC mutters now and then (every 10-18 s, never over another bubble)
+      const npc = def.objects.find(o => o.talk);
+      if (npc && !UI.bubbleOn() && (this.npcT = (this.npcT ?? 8) - dt) <= 0) { this.npcT = 10 + Math.random() * 8; this.sayAt('NPC_UMSEE_IDLE', npc); }
       // random phone ring (M6)
       if (def.ring) {
         this.ringing = Math.max(0, this.ringing - dt);
@@ -359,14 +363,15 @@ function makeRoom(def) {
         const found = Save.get('found', []); found.push(o.id); Save.set('found', found);
         if (o.sfx) Audio8.sfx(o.sfx);
         saidThisVisit.add(o.id);
-        this.say(o.disc);
+        this.say(o.disc); def.onDisc?.(o, this);
         if (['gallery', 'career', 'meeting', 'interview', 'contact'].every(k => found.includes(k)) && !Save.get('allFound', false)) {
           Save.set('allFound', true); setTimeout(() => this.say('ALL_FOUND'), 3500);
         }
         return;
       }
       // already discovered: repeat the soft line once per visit (page load), so the pigeon keeps talking
-      if (o.disc && !saidThisVisit.has(o.id)) { saidThisVisit.add(o.id); this.say(o.disc); return; }
+      if (o.disc && !saidThisVisit.has(o.id)) { saidThisVisit.add(o.id); this.say(o.disc); def.onDisc?.(o, this); return; }
+      if (o.talk) { this.sayAt(o.talk, o); this.npcT = 12; return; }
       if (o.near) { this.say(o.near); return; }
       // only after walking into the room (>= 2 rows) and coming back to the door, never right on entry
       if (o.exit) { if (!this.exitSaid && this.far >= 2 && !def.hesitate) { this.exitSaid = true; this.say('EXIT_ROOM'); } return; }
@@ -401,10 +406,43 @@ const exitDoor = (back, x = 9) => ({
 function onceEnter(key, id, r) { Save.set('enter.' + key, true); setTimeout(() => { if (Scenes.current === r) r.say(id); }, 600); }
 const deco = (id, x, y, w, h, draw) => ({ id, x, y, w, h, draw });
 const floorDeco = (id, draw) => ({ id, x: 0, y: 3, w: 0, h: 0, solid: false, draw });
+// UMSEE, the artist NPC (storyboard 3.2.1.5): stands on one tile, sways left/right and nods; talks when the pigeon comes close
+const npcImg = new Image(); npcImg.src = 'assets/umsee_npc.png';
+const umseeNpc = (x, y, talk) => ({
+  id: 'umsee', x, y, w: 1, h: 1, talk, label: () => 'UMSEE', act: (r, o) => r.sayAt(talk, o),
+  draw: (c, X, Y) => {
+    const t = performance.now() / 1000, sway = Math.round(Math.sin(t * 1.3)), nod = (t % 3.2) < 0.5 && Math.floor(t * 6) % 2 ? 1 : 0;
+    rect(c, 'rgba(0,0,0,0.25)', X - 1 + sway, Y + 14, 14, 2);
+    if (npcImg.complete && npcImg.naturalWidth) c.drawImage(npcImg, nod * 32, 0, 32, 56, X - 8 + sway, Y + 16 - 56, 32, 56);
+  },
+});
+
+// UMSEE in the studio home: draws at the work table or sits on the sofa, stands up to stretch in between,
+// and jumps up when the doorbell rings. Frames in assets/umsee_hub.png: 0-1 drawing, 2 sofa, 3 stretch, 4 standing.
+const hubImg = new Image(); hubImg.src = 'assets/umsee_hub.png';
+const hubNpc = { spot: 'table', mode: 'sit', t: 0, next: 12 };
+function hubNpcStep(dt) {
+  const n = hubNpc; n.t += dt;
+  if (n.t < n.next) return;
+  if (n.mode === 'sit') { n.mode = 'stretch'; n.t = 0; n.next = 2; }
+  else if (n.mode === 'stretch') { n.spot = n.spot === 'table' ? 'sofa' : 'table'; n.mode = 'sit'; n.t = 0; n.next = 10 + Math.random() * 6; }
+  else { n.mode = 'sit'; n.t = 0; n.next = 6 + Math.random() * 4; } // after the doorbell
+}
+function hubNpcDraw(c, spot) {
+  const n = hubNpc; if (n.spot !== spot || !hubImg.complete || !hubImg.naturalWidth) return;
+  const t = performance.now() / 1000, standing = n.mode !== 'sit';
+  const f = standing ? (n.mode === 'stretch' ? 3 : 4) : spot === 'table' ? Math.floor(t * 3) % 2 : 2;
+  const nod = !standing && spot === 'sofa' && (t % 2.6) < 0.4 ? 1 : 0;
+  const [x, y] = spot === 'table' ? (standing ? [152, 25] : [152, 45]) : (standing ? [240, 62] : [240, 82 + nod]);
+  c.drawImage(hubImg, f * 32, 0, 32, 56, x, y, 32, 56);
+}
+const hubNpcAnchor = () => hubNpc.spot === 'table' ? { x: 168, y: hubNpc.mode === 'sit' ? 44 : 24 } : { x: 256, y: hubNpc.mode === 'sit' ? 80 : 60 };
 
 // ---------- M1 hub: Umsee studio ----------
 const HubScene = makeRoom({
-  start: [10, 7], coo: true, leap: true,
+  start: [10, 7], coo: true, leap: true, npcStep: hubNpcStep,
+  // doorbell (meeting door found): UMSEE looks up a moment later
+  onDisc(o, r) { if (o.id !== 'meeting') return; setTimeout(() => { if (Scenes.current !== r) return; Object.assign(hubNpc, { mode: 'alert', t: 0, next: 3 }); r.sayAt('NPC_UMSEE_BELL', r.def.objects.find(x => x.id === 'umsee')); }, 1600); },
   objects: [
     floorDeco('mess', c => { // work traces on the floor, drawn first
       Draw.splat(c, 120, 100, COL.pink); Draw.splat(c, 140, 92, COL.yellow); Draw.splat(c, 196, 140, '#5ec8ff');
@@ -420,10 +458,12 @@ const HubScene = makeRoom({
       draw: (c, X, Y, w) => Draw.door(c, X, Y, w, COL.wood, Draw.icon.bell) },
     { id: 'career', fly: true, leap: true, x: 1, y: 4, w: 3, h: 2, disc: 'DISC_CAREER', desc: 'descCareer', act: () => Scenes.go(CareerScene), draw: (c, X, Y, w, h) => Draw.crt(c, X, Y, w, h, true) },
     { id: 'easel', x: 7, y: 6, w: 2, h: 1, draw: (c, X, Y, w, h) => Draw.easel(c, X - 2, Y, w + 4, h) },
+    { id: 'umsee', x: 10, y: 4, w: 1, h: 1, talk: 'NPC_UMSEE_HUB', anchor: hubNpcAnchor, label: () => 'UMSEE', act: (r, o) => r.sayAt('NPC_UMSEE_HUB', o), draw: c => hubNpcDraw(c, 'table') },
     { id: 'worktable', x: 9, y: 5, w: 3, h: 1, draw: (c, X, Y, w, h) => Draw.workTable(c, X, Y, w, h) },
     { id: 'interview', fly: true, leap: true, x: 15, y: 4, w: 3, h: 2, disc: 'DISC_INTERVIEW', desc: 'descInterview', act: () => Scenes.go(InterviewScene),
       draw: (c, X, Y, w, h) => { Draw.crt(c, X, Y, w, h, false); } },
     { id: 'sofa', x: 14, y: 7, w: 4, h: 1, draw: (c, X, Y, w) => { Draw.sofa(c, X, Y, w); Draw.remote(c, X + w - 9, Y - 4); } },
+    { id: 'umseeSofa', x: 14, y: 7, w: 4, h: 1, solid: false, draw: c => hubNpcDraw(c, 'sofa') },
     { id: 'contact', fly: true, x: 1, y: 8, w: 3, h: 2, disc: 'DISC_CONTACT', desc: 'descContact', act: () => Scenes.go(ContactScene),
       draw: (c, X, Y, w, h) => { Draw.desk(c, X, Y, w, h); Draw.mailbox(c, X + w - 20, Y - 4); Draw.letters(c, X + 6, Y - 4); Draw.pens(c, X + 24, Y - 3); } },
     { id: 'canvases', x: 17, y: 9, w: 2, h: 1, draw: (c, X, Y, w, h) => Draw.canvasStack(c, X, Y - 16, w, h + 16) },
@@ -451,6 +491,7 @@ const MeetingScene = makeRoom({
     { id: 'chairsFront', x: 5, y: 7, w: 10, h: 1, solid: false, draw: (c, X, Y) => { for (let i = 0; i < 4; i++) Draw.chair(c, X + 12 + i * 36, Y - 2, false); } },
     deco('plant', 18, 4, 1, 1, (c, X, Y) => Draw.plant(c, X, Y)),
     deco('plant2', 1, 3, 1, 1, (c, X, Y) => Draw.plant(c, X, Y)),
+    umseeNpc(16, 5, 'NPC_UMSEE_MEETING'),
     exitDoor('meeting'),
   ],
   wall: 'meeting',
@@ -475,6 +516,7 @@ const InterviewScene = makeRoom({
     { id: 'sofa', x: 6, y: 8, w: 8, h: 1, draw: (c, X, Y, w) => Draw.sofa(c, X, Y, w) },
     deco('lamp', 15, 4, 1, 1, (c, X, Y) => Draw.lamp(c, X, Y)),
     deco('plant', 3, 4, 1, 1, (c, X, Y) => Draw.plant(c, X, Y)),
+    umseeNpc(14, 6, 'NPC_UMSEE_INTERVIEW'),
     exitDoor('interview', 3),
   ],
   wall: 'interview',

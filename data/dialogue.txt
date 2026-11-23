@@ -449,3 +449,101 @@ zh: 一起来逛逛吧！
 tw: 一起來逛逛吧！
 fr: Venez visiter avec moi !
 es: ¡Ven a mirar conmigo!
+
+@NPC_UMSEE_MEETING
+[상황] 미팅룸에서 엄씨(작가 NPC)에게 다가갔을 때(무작위 한 묶음)
+ko: 오, 왔어? 앉아. 커피는 셀프.
+en: Oh, you came? Sit. Coffee's self-serve.
+ja: お、来た？座って。コーヒーはセルフね。
+zh: 哦，来啦？坐吧。咖啡自己倒。
+tw: 喔，來啦？坐吧。咖啡自己倒。
+fr: Oh, te voilà ? Assieds-toi. Le café, c'est en libre-service.
+es: ¡Oh, viniste! Siéntate. El café es autoservicio.
+---
+ko: 다음 콜라보는... 음, 비밀.
+en: The next collab is... hmm, secret.
+ja: 次のコラボは…うーん、ひみつ。
+zh: 下一次合作嘛……嗯，保密。
+tw: 下一次合作嘛……嗯，保密。
+fr: La prochaine collab… hmm, c'est un secret.
+es: La próxima colaboración... mmm, es secreto.
+
+@NPC_UMSEE_INTERVIEW
+[상황] 인터뷰 방에서 엄씨(작가 NPC)에게 다가갔을 때(무작위 한 묶음)
+ko: 카메라 앞은 아직도 좀 떨려.
+en: Still a bit nervous in front of a camera.
+ja: カメラの前はまだちょっと緊張する。
+zh: 在镜头前还是有点紧张。
+tw: 在鏡頭前還是有點緊張。
+fr: Devant une caméra, j'ai encore un peu le trac.
+es: Frente a la cámara todavía me pongo un poco nervioso.
+---
+ko: 리모컨으로 채널 돌려 봐.
+en: Try the remote, flip the channel.
+ja: リモコンでチャンネル変えてみて。
+zh: 用遥控器换个台看看。
+tw: 用遙控器換個台看看。
+fr: Prends la télécommande, change de chaîne.
+es: Usa el control y cambia de canal.
+
+@NPC_UMSEE_IDLE
+[상황] 엄씨가 혼자 있을 때 가끔 하는 혼잣말(무작위 한 묶음)
+ko: 음음.
+en: Mm-hm.
+ja: うんうん。
+zh: 嗯嗯。
+tw: 嗯嗯。
+fr: Mm-hm.
+es: Ajá.
+---
+ko: 오늘 핑크가 잘 나오네.
+en: The pink looks good today.
+ja: 今日はピンクがいい感じ。
+zh: 今天的粉色很好看。
+tw: 今天的粉紅色很好看。
+fr: Le rose rend bien aujourd'hui.
+es: Hoy el rosa sale bonito.
+---
+ko: 흠, 다음엔 뭘 그리지.
+en: Hmm, what to paint next.
+ja: うーん、次は何を描こう。
+zh: 嗯，下次画什么呢。
+tw: 嗯，下次畫什麼呢。
+fr: Hmm, je peins quoi ensuite.
+es: Mmm, ¿qué pinto ahora?
+
+@NPC_UMSEE_HUB
+[상황] 스튜디오 홈에서 엄씨에게 다가갔을 때(무작위 한 묶음)
+ko: 어, 둘기 왔네.
+en: Oh, hey pigeon.
+ja: あ、ハトちゃん来た。
+zh: 哦，鸽子来了。
+tw: 喔，鴿子來了。
+fr: Oh, salut le pigeon.
+es: Ah, llegó la paloma.
+---
+ko: 이거 거의 다 됐어. 조금만.
+en: Almost done with this one. Just a bit more.
+ja: これもうすぐできる。あと少し。
+zh: 这张快画完了，再等一下。
+tw: 這張快畫完了，再等一下。
+fr: Presque fini. Encore un peu.
+es: Ya casi termino. Un poquito más.
+
+@NPC_UMSEE_BELL
+[상황] 스튜디오 홈에서 미팅룸 초인종이 울린 뒤 엄씨의 반응(무작위 한 묶음)
+ko: 어? 손님인가!
+en: Huh? A visitor!
+ja: え？お客さん？
+zh: 咦？有客人吗！
+tw: 咦？有客人嗎！
+fr: Hein ? De la visite !
+es: ¿Eh? ¡Una visita!
+---
+ko: 잠깐만요~ 지금 가요!
+en: Just a sec~ coming!
+ja: ちょっと待って〜今行く！
+zh: 等一下～马上来！
+tw: 等一下～馬上來！
+fr: Une seconde~ j'arrive !
+es: ¡Un momento~ ya voy!
