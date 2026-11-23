@@ -264,7 +264,7 @@ function makeRoom(def) {
     },
     adjacent(o) { return this.spots(o).some(([x, y]) => x === this.p.tx && y === this.p.ty); },
     say(id) { UI.say(Data.say(id), () => ({ x: this.p.x + 8, y: this.p.y - 14 })); },
-    sayAt(id, o) { UI.say(Data.say(id), o.anchor?.() || { x: (o.x + o.w / 2) * TILE, y: o.y * TILE - (o.talk ? 44 : 22) }); },
+    sayAt(id, o) { UI.say(Data.say(id), o.anchor || { x: (o.x + o.w / 2) * TILE, y: o.y * TILE - (o.talk ? 44 : 22) }); },
     interact(o) {
       const ox = o.x + o.w / 2 - 0.5, oy = o.y + o.h / 2 - 0.5, dx = ox - this.p.tx, dy = oy - this.p.ty;
       if (!this.p.moving) this.p.face = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
@@ -467,7 +467,7 @@ function hubNpcDraw(c, spot) {
 const hubNpcAnchor = () => {
   const n = hubNpc;
   if (n.mode === 'walk') return { x: n.x + 16, y: n.y - 4 };
-  return n.spot === 'table' ? { x: 168, y: n.mode === 'sit' ? 44 : 24 } : { x: 248, y: n.mode === 'sit' ? 80 : 40 };
+  return n.spot === 'table' ? { x: 168, y: n.mode === 'sit' ? 44 : n.mode === 'stretch' ? 22 : 24 } : { x: 248, y: n.mode === 'sit' ? 79 : n.mode === 'stretch' ? 38 : 40 };
 };
 
 // ---------- M1 hub: Umsee studio ----------
