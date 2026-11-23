@@ -68,11 +68,28 @@ const UI = (() => {
     img.onload = () => apply(); img.src = src;
     const show = d => { const n = nav?.(d); if (!n) return; z = 0; img.alt = n.title; v.querySelector('.vt').textContent = n.title; img.src = n.src; };
     v.querySelectorAll('[data-vnav]').forEach(b => b.addEventListener('click', ev => { ev.stopPropagation(); show(+b.dataset.vnav); }));
-    box.addEventListener('wheel', e => { e.preventDefault(); const r = box.getBoundingClientRect(); zoom(e.deltaY < 0 ? 1.25 : 0.8, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }, { passive: false });
+    box.addEventListener('wheel', e => { e.preventDefault(); const r = box.getBoundingClientRect(); zoom(Math.min(1.25, Math.max(0.8, Math.exp(-e.deltaY * 0.002))), (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }, { passive: false });
     let drag = null, moved = false;
-    box.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY, box.scrollLeft, box.scrollTop]; moved = false; box.setPointerCapture(e.pointerId); });
-    box.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; box.scrollLeft = drag[2] - dx; box.scrollTop = drag[3] - dy; });
+    const fingers = new Map(); let pinch = 0; // pinch = last distance between two fingers (0 = not pinching)
+    const gap = () => { const [a, b] = [...fingers.values()]; return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
+    box.addEventListener('pointerdown', e => {
+      fingers.set(e.pointerId, { x: e.clientX, y: e.clientY }); box.setPointerCapture(e.pointerId);
+      if (fingers.size === 2) { pinch = gap(); drag = null; moved = true; return; }
+      drag = [e.clientX, e.clientY, box.scrollLeft, box.scrollTop]; moved = false;
+    });
+    box.addEventListener('pointermove', e => {
+      if (fingers.has(e.pointerId)) fingers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pinch) {
+        if (fingers.size < 2) return;
+        const d = gap(), [a, b] = [...fingers.values()], r = box.getBoundingClientRect();
+        zoom(d / pinch, ((a.x + b.x) / 2 - r.left) / r.width, ((a.y + b.y) / 2 - r.top) / r.height); pinch = d; return;
+      }
+      if (!drag) return; const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; box.scrollLeft = drag[2] - dx; box.scrollTop = drag[3] - dy; });
+    const endFinger = e => { fingers.delete(e.pointerId); if (fingers.size < 2) pinch = 0; };
+    box.addEventListener('pointercancel', e => { endFinger(e); drag = null; });
     box.addEventListener('pointerup', e => {
+      if (moved && fingers.size > 1) { endFinger(e); drag = null; return; } // end of a pinch: no tap, no swipe
+      endFinger(e);
       if (drag && !moved) { const r = box.getBoundingClientRect(); z ? (z = 0, apply()) : zoom(2, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }
       else if (drag && nav && !z) { const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) show(dx < 0 ? 1 : -1); } // swipe at fit size
       drag = null;
