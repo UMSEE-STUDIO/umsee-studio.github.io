@@ -241,8 +241,8 @@ function makeRoom(def) {
     enter(arg) {
       this.grid = Array.from({ length: ROWS }, (_, y) => Array.from({ length: COLS }, (_, x) => (x === 0 || y <= 2 || x === COLS - 1 || y === ROWS - 1) ? 1 : 0));
       for (const o of def.objects) if (o.solid !== false) for (let y = o.y; y < o.y + o.h; y++) for (let x = o.x; x < o.x + o.w; x++) this.grid[y][x] = 1;
-      // flight grid (def.leap rooms): the pigeon may fly over plain furniture, never over the shell or interactive objects (doors, TVs)
-      this.fgrid = def.leap ? this.grid.map((row, y) => row.map((v, x) => (v && y > 2 && x > 0 && x < COLS - 1 && y < ROWS - 1 && def.objects.some(o => o.solid !== false && !o.act && x >= o.x && x < o.x + o.w && y >= o.y && y < o.y + o.h)) ? 0 : v)) : null;
+      // flight grid (def.leap rooms): the pigeon may fly over plain furniture, never over the shell or interactive objects (doors, desk) except those flagged leap (the two TVs)
+      this.fgrid = def.leap ? this.grid.map((row, y) => row.map((v, x) => (v && y > 2 && x > 0 && x < COLS - 1 && y < ROWS - 1 && def.objects.some(o => o.solid !== false && (!o.act || o.leap) && x >= o.x && x < o.x + o.w && y >= o.y && y < o.y + o.h)) ? 0 : v)) : null;
       const from = def.objects.find(o => o.id === arg);
       const [sx, sy] = from ? this.frontOf(from) : def.start;
       this.p = Pigeon.make(sx, sy, from ? 'down' : 'up');
@@ -377,7 +377,7 @@ function makeRoom(def) {
       const objs = [...def.objects].sort((a, b) => (a.y + a.h) - (b.y + b.h));
       let drawn = false;
       for (const o of objs) {
-        if (!drawn && o.y > 2 && o.y + o.h - 1 > this.p.ty) { Pigeon.draw(ctx, this.p); drawn = true; }
+        if (!drawn && !this.p.air && o.y > 2 && o.y + o.h - 1 > this.p.ty) { Pigeon.draw(ctx, this.p); drawn = true; }
         o.draw?.(ctx, o.x * TILE, o.y * TILE, o.w * TILE, o.h * TILE, this);
       }
       if (!drawn) Pigeon.draw(ctx, this.p);
@@ -418,10 +418,10 @@ const HubScene = makeRoom({
     deco('shelf', 9, 2, 2, 1, (c, X, Y, w) => Draw.bookshelf(c, X + 2, w - 2)),
     { id: 'meeting', fly: true, x: 13, y: 2, w: 2, h: 1, disc: 'DISC_MEETING', sfx: 'bell', desc: 'descMeeting', act: () => Scenes.go(MeetingScene),
       draw: (c, X, Y, w) => Draw.door(c, X, Y, w, COL.wood, Draw.icon.bell) },
-    { id: 'career', fly: true, x: 1, y: 4, w: 3, h: 2, disc: 'DISC_CAREER', desc: 'descCareer', act: () => Scenes.go(CareerScene), draw: (c, X, Y, w, h) => Draw.crt(c, X, Y, w, h, true) },
+    { id: 'career', fly: true, leap: true, x: 1, y: 4, w: 3, h: 2, disc: 'DISC_CAREER', desc: 'descCareer', act: () => Scenes.go(CareerScene), draw: (c, X, Y, w, h) => Draw.crt(c, X, Y, w, h, true) },
     { id: 'easel', x: 7, y: 6, w: 2, h: 1, draw: (c, X, Y, w, h) => Draw.easel(c, X - 2, Y, w + 4, h) },
     { id: 'worktable', x: 9, y: 5, w: 3, h: 1, draw: (c, X, Y, w, h) => Draw.workTable(c, X, Y, w, h) },
-    { id: 'interview', fly: true, x: 15, y: 4, w: 3, h: 2, disc: 'DISC_INTERVIEW', desc: 'descInterview', act: () => Scenes.go(InterviewScene),
+    { id: 'interview', fly: true, leap: true, x: 15, y: 4, w: 3, h: 2, disc: 'DISC_INTERVIEW', desc: 'descInterview', act: () => Scenes.go(InterviewScene),
       draw: (c, X, Y, w, h) => { Draw.crt(c, X, Y, w, h, false); } },
     { id: 'sofa', x: 14, y: 7, w: 4, h: 1, draw: (c, X, Y, w) => { Draw.sofa(c, X, Y, w); Draw.remote(c, X + w - 9, Y - 4); } },
     { id: 'contact', fly: true, x: 1, y: 8, w: 3, h: 2, disc: 'DISC_CONTACT', desc: 'descContact', act: () => Scenes.go(ContactScene),
